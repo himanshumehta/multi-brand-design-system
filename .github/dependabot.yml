@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    # Wait a week before proposing a new release, so a compromised or
+    # yanked version has time to be caught upstream.
+    cooldown:
+      default-days: 7
+  - package-ecosystem: pip
+    directories:
+      - /
+      - /.github
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
