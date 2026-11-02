@@ -7,7 +7,6 @@
 :root,
 [data-theme] {
   --color-primary-soft: color-mix(in srgb, var(--color-primary) 13%, transparent);
-  --color-secondary-soft: color-mix(in srgb, var(--color-secondary) 13%, transparent);
   --color-accent-soft: color-mix(in srgb, var(--color-accent) 14%, transparent);
   --color-success-soft: color-mix(in srgb, var(--color-success) 14%, transparent);
   --color-warning-soft: color-mix(in srgb, var(--color-warning) 16%, transparent);
@@ -69,11 +68,6 @@ code {
   border-radius: var(--radius-sm);
   background: var(--surface-2);
   color: var(--text-1);
-}
-
-.visually-hidden {
-  position: absolute !important; width: 1px; height: 1px; overflow: hidden;
-  clip: rect(0 0 0 0); white-space: nowrap;
 }
 
 /* ── Layout ─────────────────────────────────────────── */
@@ -234,7 +228,6 @@ code {
   border-radius: var(--radius-lg);
 }
 .demo--stack { flex-direction: column; align-items: stretch; }
-.demo--plain { background: transparent; border: 0; padding: 0; }
 .demo + .demo, .demo + .code, .code + .demo { margin-top: var(--space-4); }
 
 .code {

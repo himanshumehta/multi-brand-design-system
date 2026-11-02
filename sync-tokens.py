@@ -25,6 +25,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 THEMES = ROOT / "themes"
+TABLE_TOKENS = ["--surface-0", "--text-1", "--color-primary", "--color-accent",
+                "--font-display", "--radius-md", "--duration-base"]
+COLOUR_LITERAL = re.compile(r"#[0-9a-fA-F]{3,8}\b|\b(?:rgba?|hsla?|oklch|oklab|lab|lch)\(")
 
 
 def load_contract():
@@ -62,6 +65,7 @@ def theme_blocks(theme_id, css):
 
 
 def registry():
+    """Return (@imported theme ids, {id: label} from --theme-list)."""
     css = strip_comments((THEMES / "index.css").read_text())
     imports = re.findall(r'@import\s+url\("([^"]+)\.css"\)', css)
     listed = re.search(r'--theme-list:\s*"([^"]+)"', css)
@@ -69,13 +73,8 @@ def registry():
     return imports, {p[0].strip(): p[1].strip() for p in pairs}
 
 
-def main():
-    args = sys.argv[1:]
-    errors = []
-    contract = load_contract()
-    all_tokens = [t for g in contract for t in g["tokens"]]
-    colour_tokens = [t for g in contract if g["mode"] for t in g["tokens"]]
-
+def check_registry(errors):
+    """Every theme file is registered and every registration has a file. Returns ids and labels."""
     imports, listed = registry()
     on_disk = sorted(p.stem for p in THEMES.glob("*.css") if p.stem != "index")
     files = [t for t in imports if t in on_disk] + [t for t in on_disk if t not in imports]
@@ -87,28 +86,30 @@ def main():
     for t in set(imports) | set(listed):
         if t not in files:
             errors.append(f"themes/index.css registers '{t}' but themes/{t}.css does not exist")
+    return files, listed
 
+
+def check_themes(errors, files, listed, contract):
+    """Each theme defines the full contract (colour group again for dark). Returns resolved tokens."""
+    all_tokens = [t for g in contract for t in g["tokens"]]
+    colour_tokens = [t for g in contract if g["mode"] for t in g["tokens"]]
     data = {}
     for theme_id in files:
         light, dark = theme_blocks(theme_id, (THEMES / f"{theme_id}.css").read_text())
-        for t in all_tokens:
-            if t not in light:
-                errors.append(f"{theme_id}: light block is missing {t}")
-        for t in colour_tokens:
-            if t not in dark:
-                errors.append(f"{theme_id}: dark block is missing {t}")
-        for t in set(light) | set(dark):
-            if t not in all_tokens:
-                errors.append(f"{theme_id}: {t} is not in the contract")
+        errors += [f"{theme_id}: light block is missing {t}" for t in all_tokens if t not in light]
+        errors += [f"{theme_id}: dark block is missing {t}" for t in colour_tokens if t not in dark]
+        errors += [f"{theme_id}: {t} is not in the contract" for t in sorted(set(light) | set(dark)) if t not in all_tokens]
         data[theme_id] = {
             "label": listed.get(theme_id, theme_id),
             "light": {t: light.get(t) for t in all_tokens},
             "dark": {t: dark.get(t, light.get(t)) for t in all_tokens},
         }
+    return data
 
-    # Lint: every var() reference must resolve to something defined.
-    sources = list((ROOT / "css").glob("*.css")) + list((ROOT / "js").glob("*.js")) + list(ROOT.glob("*.html"))
-    defined = set(all_tokens) | {"--theme-list"}
+
+def lint_var_references(errors, sources, contract):
+    """Every var(--x) resolves to a contract token or a property declared somewhere in the sources."""
+    defined = {t for g in contract for t in g["tokens"]} | {"--theme-list"}
     for src in sources:
         defined |= set(re.findall(r"(--[a-z0-9-]+)\s*:", strip_comments(src.read_text())))
     for src in sources:
@@ -116,35 +117,58 @@ def main():
             if name not in defined:
                 errors.append(f"{src.relative_to(ROOT)}: var({name}) is never defined")
 
-    # Lint: colour literals belong only in themes/.
-    literal = re.compile(r"#[0-9a-fA-F]{3,8}\b|\b(?:rgba?|hsla?|oklch|oklab|lab|lch)\(")
-    for src in (ROOT / "css").glob("*.css"):
+
+def lint_colour_literals(errors):
+    """Colour values belong only in themes/."""
+    for src in sorted((ROOT / "css").glob("*.css")):
         for i, line in enumerate(strip_comments(src.read_text()).splitlines(), 1):
-            if literal.search(line):
+            if COLOUR_LITERAL.search(line):
                 errors.append(f"{src.relative_to(ROOT)}:{i}: colour literal outside themes/: {line.strip()}")
-    # Lint: no style="" attributes; they would need 'unsafe-inline' in the CSP.
-    for src in ROOT.glob("*.html"):
+
+
+def lint_inline_styles(errors, pages):
+    """No style="" attributes; they would need 'unsafe-inline' in the CSP."""
+    for src in pages:
         for style in re.findall(r'\sstyle="([^"]*)"', src.read_text()):
             errors.append(f"{src.name}: inline style attribute (use a class in css/utilities.css): {style}")
+
+
+def print_table(data, files):
+    print("| Token | " + " | ".join(f"{data[t]['label']} light | {data[t]['label']} dark" for t in files) + " |")
+    print("|" + "---|" * (1 + 2 * len(files)))
+    for k in TABLE_TOKENS:
+        cells = []
+        for t in files:
+            cells += [data[t]["light"][k], data[t]["dark"][k]]
+        print(f"| `{k}` | " + " | ".join(f"`{c}`" for c in cells) + " |")
+
+
+def main():
+    args = sys.argv[1:]
+    errors = []
+    contract = load_contract()
+    pages = sorted(ROOT.glob("*.html"))
+    sources = sorted((ROOT / "css").glob("*.css")) + sorted((ROOT / "js").glob("*.js")) + pages
+
+    files, listed = check_registry(errors)
+    data = check_themes(errors, files, listed, contract)
+    lint_var_references(errors, sources, contract)
+    lint_colour_literals(errors)
+    lint_inline_styles(errors, pages)
 
     if "--json" in args:
         print(json.dumps({"contract": contract, "themes": data}, indent=2))
     elif "--table" in args:
-        keys = ["--surface-0", "--text-1", "--color-primary", "--color-accent", "--font-display", "--radius-md", "--duration-base"]
-        print("| Token | " + " | ".join(f"{data[t]['label']} light | {data[t]['label']} dark" for t in files) + " |")
-        print("|" + "---|" * (1 + 2 * len(files)))
-        for k in keys:
-            cells = []
-            for t in files:
-                cells += [data[t]["light"][k], data[t]["dark"][k]]
-            print(f"| `{k}` | " + " | ".join(f"`{c}`" for c in cells) + " |")
+        print_table(data, files)
 
     if errors:
         print(f"FAIL: {len(errors)} problem(s)", file=sys.stderr)
         for e in errors:
             print("  - " + e, file=sys.stderr)
         sys.exit(1)
-    print(f"OK: {len(files)} themes x {len(all_tokens)} tokens ({len(colour_tokens)} per dark block); "
+    n_tokens = sum(len(g["tokens"]) for g in contract)
+    n_colour = sum(len(g["tokens"]) for g in contract if g["mode"])
+    print(f"OK: {len(files)} themes x {n_tokens} tokens ({n_colour} per dark block); "
           f"{len(sources)} source files linted", file=sys.stderr)
 
 
