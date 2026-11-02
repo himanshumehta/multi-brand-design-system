@@ -95,8 +95,8 @@ PROBE = """
 
 
 class QuietHandler(http.server.SimpleHTTPRequestHandler):
-    def log_message(self, format, *args):  # noqa: A002 - signature fixed by the base class
-        pass
+    def log_message(self, *_args):
+        """Keep the gate's output to results, not one line per request."""
 
 
 @contextmanager
