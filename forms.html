@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="themes/index.css">
 <link rel="stylesheet" href="css/catalogue.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/utilities.css">
 </head>
 <body>
 <nav class="sidebar" aria-label="Catalogue"></nav>
@@ -22,7 +23,7 @@
 <section class="doc-section" aria-labelledby="text-inputs">
   <h2 id="text-inputs">Text inputs</h2>
   <div class="demo">
-    <div class="form-grid" style="width:100%">
+    <div class="form-grid u-w-full">
       <div class="field"><label class="field__label" for="f-name">Full name</label><input class="input" id="f-name" placeholder="Sam Rivera"><span class="field__hint">As it appears on your card.</span></div>
       <div class="field"><label class="field__label" for="f-price">Budget</label><div class="input-group"><span class="input-group__addon">$</span><input class="input" id="f-price" inputmode="decimal" value="250"></div></div>
       <div class="field"><label class="field__label" for="f-dis">Account ID</label><input class="input" id="f-dis" value="AC-20931" disabled><span class="field__hint">Set by the system.</span></div>
@@ -33,7 +34,7 @@
 <section class="doc-section" aria-labelledby="validation">
   <h2 id="validation">Validation</h2>
   <div class="demo">
-    <div class="form-grid" style="width:100%">
+    <div class="form-grid u-w-full">
       <div class="field field--error"><label class="field__label" for="f-email">Email</label><input class="input" id="f-email" value="sam@example" aria-invalid="true" aria-describedby="f-email-hint"><span class="field__hint" id="f-email-hint">Add the domain ending, for example sam@example.com.</span></div>
       <div class="field field--success"><label class="field__label" for="f-user">Username</label><input class="input" id="f-user" value="samrivera" aria-describedby="f-user-hint"><span class="field__hint" id="f-user-hint">Available.</span></div>
     </div>
@@ -43,13 +44,13 @@
 <section class="doc-section" aria-labelledby="choices">
   <h2 id="choices">Choices</h2>
   <div class="grid grid--3">
-    <fieldset class="demo demo--stack" style="margin:0">
+    <fieldset class="demo demo--stack u-m-0">
       <legend class="field__label">Delivery</legend>
       <label class="check"><input type="radio" name="ship" checked>Standard, 3 to 5 days</label>
       <label class="check"><input type="radio" name="ship">Express, next day</label>
       <label class="check"><input type="radio" name="ship">Collect in store</label>
     </fieldset>
-    <fieldset class="demo demo--stack" style="margin:0">
+    <fieldset class="demo demo--stack u-m-0">
       <legend class="field__label">Email me about</legend>
       <label class="check"><input type="checkbox" checked>Order updates</label>
       <label class="check"><input type="checkbox">Restocks</label>
@@ -66,7 +67,7 @@
 <section class="doc-section" aria-labelledby="sample-form">
   <h2 id="sample-form">A complete form</h2>
   <p class="doc-desc">Submitting shows a toast instead of sending anything.</p>
-  <form class="demo demo--stack" onsubmit="return false">
+  <form class="demo demo--stack" data-demo-form>
     <div class="form-grid">
       <div class="field"><label class="field__label" for="s-first">First name</label><input class="input" id="s-first" autocomplete="given-name"></div>
       <div class="field"><label class="field__label" for="s-last">Last name</label><input class="input" id="s-last" autocomplete="family-name"></div>

@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="themes/index.css">
 <link rel="stylesheet" href="css/catalogue.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/utilities.css">
 </head>
 <body>
 <nav class="sidebar" aria-label="Catalogue"></nav>
@@ -88,14 +89,14 @@
   <div class="demo demo--stack">
     <div class="field">
       <span class="field__label" id="up-label">Uploading photos</span>
-      <div class="progress" id="up-progress" role="progressbar" aria-labelledby="up-label" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40"><div class="progress__bar" style="width:40%"></div></div>
+      <div class="progress" id="up-progress" role="progressbar" aria-labelledby="up-label" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40"><div class="progress__bar u-w-40"></div></div>
     </div>
-    <div class="progress progress--success" role="progressbar" aria-label="Storage used" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72"><div class="progress__bar" style="width:72%"></div></div>
+    <div class="progress progress--success" role="progressbar" aria-label="Storage used" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72"><div class="progress__bar u-w-72"></div></div>
     <div><button class="btn btn--secondary btn--sm" type="button" data-progress-demo="#up-progress">Advance upload</button></div>
-    <div style="display:grid;gap:var(--space-2);max-width:420px" aria-label="Loading" role="status">
-      <div class="skeleton" style="height:16px;width:60%"></div>
-      <div class="skeleton" style="height:12px"></div>
-      <div class="skeleton" style="height:12px;width:85%"></div>
+    <div class="u-stack u-max-420" aria-label="Loading" role="status">
+      <div class="skeleton u-h-16 u-w-60"></div>
+      <div class="skeleton u-h-12"></div>
+      <div class="skeleton u-h-12 u-w-85"></div>
     </div>
   </div>
 </section>

@@ -66,6 +66,11 @@
     b.addEventListener("click", function () { toast(b.getAttribute("data-toast")); });
   });
 
+  /* Demo forms never submit; the submit button's data-toast reports instead. */
+  $all("form[data-demo-form]").forEach(function (f) {
+    f.addEventListener("submit", function (e) { e.preventDefault(); });
+  });
+
   /* Dialogs */
   $all("[data-open-dialog]").forEach(function (b) {
     var dlg = document.getElementById(b.getAttribute("data-open-dialog"));
@@ -223,15 +228,19 @@
     });
   });
 
-  /* Progress demo */
+  /* Progress demo. aria-valuenow is the source of truth; the bar's initial
+   * width comes from a utility class, later widths from the CSSOM (which a
+   * CSP without 'unsafe-inline' still allows). */
+  var PROGRESS_STEP = 30, PROGRESS_RESTART = 10;
   $all("[data-progress-demo]").forEach(function (b) {
-    var bar = document.querySelector(b.getAttribute("data-progress-demo") + " .progress__bar");
+    var track = document.querySelector(b.getAttribute("data-progress-demo"));
+    var bar = track && track.querySelector(".progress__bar");
     if (!bar) return;
     b.addEventListener("click", function () {
-      var w = parseInt(bar.style.width, 10) || 0;
-      w = w >= 100 ? 10 : Math.min(100, w + 30);
+      var w = parseInt(track.getAttribute("aria-valuenow"), 10) || 0;
+      w = w >= 100 ? PROGRESS_RESTART : Math.min(100, w + PROGRESS_STEP);
       bar.style.width = w + "%";
-      bar.parentNode.setAttribute("aria-valuenow", String(w));
+      track.setAttribute("aria-valuenow", String(w));
     });
   });
 })();

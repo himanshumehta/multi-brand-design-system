@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="themes/index.css">
 <link rel="stylesheet" href="css/catalogue.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/utilities.css">
 </head>
 <body>
 <nav class="sidebar" aria-label="Catalogue"></nav>
@@ -23,16 +24,16 @@
   <h2 id="space">Spacing</h2>
   <p class="doc-desc">Use steps for padding, gaps and margins. Avoid raw pixel values in components.</p>
   <div class="demo demo--stack">
-    <div class="space-row"><code>--space-1</code><span class="mono" data-token-value="--space-1"></span><div class="space-row__bar" style="width:var(--space-1)"></div></div>
-    <div class="space-row"><code>--space-2</code><span class="mono" data-token-value="--space-2"></span><div class="space-row__bar" style="width:var(--space-2)"></div></div>
-    <div class="space-row"><code>--space-3</code><span class="mono" data-token-value="--space-3"></span><div class="space-row__bar" style="width:var(--space-3)"></div></div>
-    <div class="space-row"><code>--space-4</code><span class="mono" data-token-value="--space-4"></span><div class="space-row__bar" style="width:var(--space-4)"></div></div>
-    <div class="space-row"><code>--space-5</code><span class="mono" data-token-value="--space-5"></span><div class="space-row__bar" style="width:var(--space-5)"></div></div>
-    <div class="space-row"><code>--space-6</code><span class="mono" data-token-value="--space-6"></span><div class="space-row__bar" style="width:var(--space-6)"></div></div>
-    <div class="space-row"><code>--space-7</code><span class="mono" data-token-value="--space-7"></span><div class="space-row__bar" style="width:var(--space-7)"></div></div>
-    <div class="space-row"><code>--space-8</code><span class="mono" data-token-value="--space-8"></span><div class="space-row__bar" style="width:var(--space-8)"></div></div>
-    <div class="space-row"><code>--space-9</code><span class="mono" data-token-value="--space-9"></span><div class="space-row__bar" style="width:var(--space-9)"></div></div>
-    <div class="space-row"><code>--space-10</code><span class="mono" data-token-value="--space-10"></span><div class="space-row__bar" style="width:var(--space-10)"></div></div>
+    <div class="space-row"><code>--space-1</code><span class="mono" data-token-value="--space-1"></span><div class="space-row__bar w-space-1"></div></div>
+    <div class="space-row"><code>--space-2</code><span class="mono" data-token-value="--space-2"></span><div class="space-row__bar w-space-2"></div></div>
+    <div class="space-row"><code>--space-3</code><span class="mono" data-token-value="--space-3"></span><div class="space-row__bar w-space-3"></div></div>
+    <div class="space-row"><code>--space-4</code><span class="mono" data-token-value="--space-4"></span><div class="space-row__bar w-space-4"></div></div>
+    <div class="space-row"><code>--space-5</code><span class="mono" data-token-value="--space-5"></span><div class="space-row__bar w-space-5"></div></div>
+    <div class="space-row"><code>--space-6</code><span class="mono" data-token-value="--space-6"></span><div class="space-row__bar w-space-6"></div></div>
+    <div class="space-row"><code>--space-7</code><span class="mono" data-token-value="--space-7"></span><div class="space-row__bar w-space-7"></div></div>
+    <div class="space-row"><code>--space-8</code><span class="mono" data-token-value="--space-8"></span><div class="space-row__bar w-space-8"></div></div>
+    <div class="space-row"><code>--space-9</code><span class="mono" data-token-value="--space-9"></span><div class="space-row__bar w-space-9"></div></div>
+    <div class="space-row"><code>--space-10</code><span class="mono" data-token-value="--space-10"></span><div class="space-row__bar w-space-10"></div></div>
   </div>
 </section>
 
@@ -40,11 +41,11 @@
   <h2 id="radius">Radius</h2>
   <p class="doc-desc">Small for inputs and tags, medium for buttons, large for cards, extra large for dialogs.</p>
   <div class="demo">
-    <div style="display:grid;gap:var(--space-2);justify-items:center"><div class="radius-box" style="border-radius:var(--radius-sm)"></div><code>--radius-sm</code><span class="meta" data-token-value="--radius-sm"></span></div>
-    <div style="display:grid;gap:var(--space-2);justify-items:center"><div class="radius-box" style="border-radius:var(--radius-md)"></div><code>--radius-md</code><span class="meta" data-token-value="--radius-md"></span></div>
-    <div style="display:grid;gap:var(--space-2);justify-items:center"><div class="radius-box" style="border-radius:var(--radius-lg)"></div><code>--radius-lg</code><span class="meta" data-token-value="--radius-lg"></span></div>
-    <div style="display:grid;gap:var(--space-2);justify-items:center"><div class="radius-box" style="border-radius:var(--radius-xl)"></div><code>--radius-xl</code><span class="meta" data-token-value="--radius-xl"></span></div>
-    <div style="display:grid;gap:var(--space-2);justify-items:center"><div class="radius-box" style="border-radius:var(--radius-pill)"></div><code>--radius-pill</code><span class="meta" data-token-value="--radius-pill"></span></div>
+    <div class="u-stack u-center-items"><div class="radius-box radius-sm"></div><code>--radius-sm</code><span class="meta" data-token-value="--radius-sm"></span></div>
+    <div class="u-stack u-center-items"><div class="radius-box radius-md"></div><code>--radius-md</code><span class="meta" data-token-value="--radius-md"></span></div>
+    <div class="u-stack u-center-items"><div class="radius-box radius-lg"></div><code>--radius-lg</code><span class="meta" data-token-value="--radius-lg"></span></div>
+    <div class="u-stack u-center-items"><div class="radius-box radius-xl"></div><code>--radius-xl</code><span class="meta" data-token-value="--radius-xl"></span></div>
+    <div class="u-stack u-center-items"><div class="radius-box radius-pill"></div><code>--radius-pill</code><span class="meta" data-token-value="--radius-pill"></span></div>
   </div>
 </section>
 
@@ -52,9 +53,9 @@
   <h2 id="elevation">Elevation</h2>
   <p class="doc-desc">Shadows are colour tokens, redefined for dark mode, where they need far more opacity to read.</p>
   <div class="grid grid--3">
-    <div class="elev-box" style="box-shadow:var(--shadow-1)">--shadow-1</div>
-    <div class="elev-box" style="box-shadow:var(--shadow-2)">--shadow-2</div>
-    <div class="elev-box" style="box-shadow:var(--shadow-3)">--shadow-3</div>
+    <div class="elev-box elev-1">--shadow-1</div>
+    <div class="elev-box elev-2">--shadow-2</div>
+    <div class="elev-box elev-3">--shadow-3</div>
   </div>
 </section>
 </main>

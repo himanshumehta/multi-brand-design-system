@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="themes/index.css">
 <link rel="stylesheet" href="css/catalogue.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/utilities.css">
 </head>
 <body>
 <nav class="sidebar" aria-label="Catalogue"></nav>
@@ -23,9 +24,9 @@
   <h2 id="durations">Durations</h2>
   <p class="doc-desc">Fast for colour and hover changes, base for small movements, slow for panels and dialogs entering.</p>
   <div class="demo demo--stack" id="dur-demo">
-    <div class="motion-row"><div><code>--duration-fast</code><br><span class="meta" data-token-value="--duration-fast"></span></div><div class="motion-track"><span class="motion-dot" style="transition-duration:var(--duration-fast);transition-timing-function:var(--ease-standard)"></span></div></div>
-    <div class="motion-row"><div><code>--duration-base</code><br><span class="meta" data-token-value="--duration-base"></span></div><div class="motion-track"><span class="motion-dot" style="transition-duration:var(--duration-base);transition-timing-function:var(--ease-standard)"></span></div></div>
-    <div class="motion-row"><div><code>--duration-slow</code><br><span class="meta" data-token-value="--duration-slow"></span></div><div class="motion-track"><span class="motion-dot" style="transition-duration:var(--duration-slow);transition-timing-function:var(--ease-standard)"></span></div></div>
+    <div class="motion-row"><div><code>--duration-fast</code><br><span class="meta" data-token-value="--duration-fast"></span></div><div class="motion-track"><span class="motion-dot dur-fast ease-standard"></span></div></div>
+    <div class="motion-row"><div><code>--duration-base</code><br><span class="meta" data-token-value="--duration-base"></span></div><div class="motion-track"><span class="motion-dot dur-base ease-standard"></span></div></div>
+    <div class="motion-row"><div><code>--duration-slow</code><br><span class="meta" data-token-value="--duration-slow"></span></div><div class="motion-track"><span class="motion-dot dur-slow ease-standard"></span></div></div>
     <div><button class="btn btn--primary" type="button" data-motion-play="dur-demo">Play</button></div>
   </div>
 </section>
@@ -34,9 +35,9 @@
   <h2 id="easing">Easing</h2>
   <p class="doc-desc">Slowed down here so the curves are visible. Standard for most transitions, emphasized for things entering the screen, spring for small confirmations like a switch thumb.</p>
   <div class="demo demo--stack" id="ease-demo">
-    <div class="motion-row"><div><code>--ease-standard</code><br><span class="meta" data-token-value="--ease-standard"></span></div><div class="motion-track"><span class="motion-dot" style="transition-duration:calc(var(--duration-slow) * 2.5);transition-timing-function:var(--ease-standard)"></span></div></div>
-    <div class="motion-row"><div><code>--ease-emphasized</code><br><span class="meta" data-token-value="--ease-emphasized"></span></div><div class="motion-track"><span class="motion-dot" style="transition-duration:calc(var(--duration-slow) * 2.5);transition-timing-function:var(--ease-emphasized)"></span></div></div>
-    <div class="motion-row"><div><code>--ease-spring</code><br><span class="meta" data-token-value="--ease-spring"></span></div><div class="motion-track"><span class="motion-dot" style="transition-duration:calc(var(--duration-slow) * 2.5);transition-timing-function:var(--ease-spring)"></span></div></div>
+    <div class="motion-row"><div><code>--ease-standard</code><br><span class="meta" data-token-value="--ease-standard"></span></div><div class="motion-track"><span class="motion-dot dur-demo ease-standard"></span></div></div>
+    <div class="motion-row"><div><code>--ease-emphasized</code><br><span class="meta" data-token-value="--ease-emphasized"></span></div><div class="motion-track"><span class="motion-dot dur-demo ease-emphasized"></span></div></div>
+    <div class="motion-row"><div><code>--ease-spring</code><br><span class="meta" data-token-value="--ease-spring"></span></div><div class="motion-track"><span class="motion-dot dur-demo ease-spring"></span></div></div>
     <div><button class="btn btn--primary" type="button" data-motion-play="ease-demo">Play</button></div>
   </div>
 </section>

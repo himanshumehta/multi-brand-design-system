@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="themes/index.css">
 <link rel="stylesheet" href="css/catalogue.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/utilities.css">
 </head>
 <body>
 <nav class="sidebar" aria-label="Catalogue"></nav>
@@ -25,9 +26,9 @@
   <div class="matrix" id="theme-matrix"></div>
   <template id="matrix-sample">
     <span class="matrix__label"></span>
-    <h3 class="specimen-display" style="font-size:var(--text-2xl)">Weekend pack list</h3>
-    <p style="color:var(--text-2);font-size:var(--text-sm)">Twelve items, under seven kilos. Three still to buy.</p>
-    <div class="progress" role="progressbar" aria-label="Packed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><div class="progress__bar" style="width:75%"></div></div>
+    <h3 class="specimen-display fs-2xl">Weekend pack list</h3>
+    <p class="fg-text-2 fs-sm">Twelve items, under seven kilos. Three still to buy.</p>
+    <div class="progress" role="progressbar" aria-label="Packed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><div class="progress__bar u-w-75"></div></div>
     <div class="specimen__row">
       <span class="badge badge--success"><span class="badge__dot"></span>9 packed</span>
       <span class="badge badge--warning">3 to buy</span>
@@ -54,7 +55,7 @@
   --color-primary: #58a6ff;
   /* …colour tokens only */
 }</code></pre>
-  <p class="doc-desc" style="margin-top:var(--space-4)">Any element can opt into a theme. Nested scopes win over the page scope:</p>
+  <p class="doc-desc u-mt-4">Any element can opt into a theme. Nested scopes win over the page scope:</p>
 <pre class="code"><code>&lt;section class="theme-scope" data-theme="acme" data-mode="dark"&gt;
   &lt;button class="btn btn--primary"&gt;Rendered in Acme, dark&lt;/button&gt;
 &lt;/section&gt;</code></pre>

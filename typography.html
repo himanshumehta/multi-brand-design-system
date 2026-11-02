@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="themes/index.css">
 <link rel="stylesheet" href="css/catalogue.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/utilities.css">
 </head>
 <body>
 <nav class="sidebar" aria-label="Catalogue"></nav>
@@ -23,9 +24,9 @@
   <h2 id="roles">Font roles</h2>
   <p class="doc-desc">Components ask for a role, never a family name.</p>
   <div class="grid grid--3">
-    <div class="card"><div class="card__body"><span class="meta">--font-display</span><p class="specimen-display" style="font-size:var(--text-3xl)">Display</p><span class="swatch__value" data-token-value="--font-display"></span></div></div>
-    <div class="card"><div class="card__body"><span class="meta">--font-body</span><p style="font-size:var(--text-xl);font-weight:var(--weight-medium)">Body text</p><span class="swatch__value" data-token-value="--font-body"></span></div></div>
-    <div class="card"><div class="card__body"><span class="meta">--font-mono</span><p style="font-family:var(--font-mono);font-size:var(--text-lg)">--space-4: 16px;</p><span class="swatch__value" data-token-value="--font-mono"></span></div></div>
+    <div class="card"><div class="card__body"><span class="meta">--font-display</span><p class="specimen-display fs-3xl">Display</p><span class="swatch__value" data-token-value="--font-display"></span></div></div>
+    <div class="card"><div class="card__body"><span class="meta">--font-body</span><p class="fs-xl fw-medium">Body text</p><span class="swatch__value" data-token-value="--font-body"></span></div></div>
+    <div class="card"><div class="card__body"><span class="meta">--font-mono</span><p class="ff-mono fs-lg">--space-4: 16px;</p><span class="swatch__value" data-token-value="--font-mono"></span></div></div>
   </div>
 </section>
 
@@ -33,24 +34,24 @@
   <h2 id="scale">Scale</h2>
   <p class="doc-desc">The top three steps use the display role; the rest use body.</p>
   <div class="demo demo--stack">
-    <div class="type-row"><div class="type-row__meta">--text-4xl<br><span data-token-value="--text-4xl"></span><br>Page titles</div><p class="type-row__sample specimen-display" style="font-size:var(--text-4xl)">Field notes for the long way home</p></div>
-    <div class="type-row"><div class="type-row__meta">--text-3xl<br><span data-token-value="--text-3xl"></span><br>Hero numbers</div><p class="type-row__sample specimen-display" style="font-size:var(--text-3xl)">Twelve trails, one weekend</p></div>
-    <div class="type-row"><div class="type-row__meta">--text-2xl<br><span data-token-value="--text-2xl"></span><br>Section headings</div><p class="type-row__sample specimen-display" style="font-size:var(--text-2xl)">Packing for changeable weather</p></div>
-    <div class="type-row"><div class="type-row__meta">--text-xl<br><span data-token-value="--text-xl"></span><br>Card titles</div><p class="type-row__sample" style="font-size:var(--text-xl)">Choosing a pack by volume</p></div>
-    <div class="type-row"><div class="type-row__meta">--text-lg<br><span data-token-value="--text-lg"></span><br>Lede paragraphs</div><p class="type-row__sample" style="font-size:var(--text-lg)">Start with what you carry every day, then add the extras.</p></div>
-    <div class="type-row"><div class="type-row__meta">--text-base<br><span data-token-value="--text-base"></span><br>Body</div><p class="type-row__sample" style="font-size:var(--text-base)">A good daypack disappears on your back. Weight sits close to the spine, straps never pinch, and the one pocket you need is the one you can reach.</p></div>
-    <div class="type-row"><div class="type-row__meta">--text-sm<br><span data-token-value="--text-sm"></span><br>UI labels, tables</div><p class="type-row__sample" style="font-size:var(--text-sm)">Capacity 40 L. Weight 1.1 kg. Back length 46 to 52 cm.</p></div>
-    <div class="type-row"><div class="type-row__meta">--text-xs<br><span data-token-value="--text-xs"></span><br>Captions, badges</div><p class="type-row__sample" style="font-size:var(--text-xs)">Prices in USD. Measured with all pockets empty.</p></div>
+    <div class="type-row"><div class="type-row__meta">--text-4xl<br><span data-token-value="--text-4xl"></span><br>Page titles</div><p class="type-row__sample specimen-display fs-4xl">Field notes for the long way home</p></div>
+    <div class="type-row"><div class="type-row__meta">--text-3xl<br><span data-token-value="--text-3xl"></span><br>Hero numbers</div><p class="type-row__sample specimen-display fs-3xl">Twelve trails, one weekend</p></div>
+    <div class="type-row"><div class="type-row__meta">--text-2xl<br><span data-token-value="--text-2xl"></span><br>Section headings</div><p class="type-row__sample specimen-display fs-2xl">Packing for changeable weather</p></div>
+    <div class="type-row"><div class="type-row__meta">--text-xl<br><span data-token-value="--text-xl"></span><br>Card titles</div><p class="type-row__sample fs-xl">Choosing a pack by volume</p></div>
+    <div class="type-row"><div class="type-row__meta">--text-lg<br><span data-token-value="--text-lg"></span><br>Lede paragraphs</div><p class="type-row__sample fs-lg">Start with what you carry every day, then add the extras.</p></div>
+    <div class="type-row"><div class="type-row__meta">--text-base<br><span data-token-value="--text-base"></span><br>Body</div><p class="type-row__sample fs-base">A good daypack disappears on your back. Weight sits close to the spine, straps never pinch, and the one pocket you need is the one you can reach.</p></div>
+    <div class="type-row"><div class="type-row__meta">--text-sm<br><span data-token-value="--text-sm"></span><br>UI labels, tables</div><p class="type-row__sample fs-sm">Capacity 40 L. Weight 1.1 kg. Back length 46 to 52 cm.</p></div>
+    <div class="type-row"><div class="type-row__meta">--text-xs<br><span data-token-value="--text-xs"></span><br>Captions, badges</div><p class="type-row__sample fs-xs">Prices in USD. Measured with all pockets empty.</p></div>
   </div>
 </section>
 
 <section class="doc-section" aria-labelledby="weights">
   <h2 id="weights">Weights</h2>
   <div class="demo">
-    <span style="font-weight:var(--weight-regular)">Regular</span>
-    <span style="font-weight:var(--weight-medium)">Medium</span>
-    <span style="font-weight:var(--weight-bold)">Bold</span>
-    <span class="specimen-display" style="font-size:var(--text-xl)">Display weight</span>
+    <span class="fw-regular">Regular</span>
+    <span class="fw-medium">Medium</span>
+    <span class="fw-bold">Bold</span>
+    <span class="specimen-display fs-xl">Display weight</span>
   </div>
 </section>
 

@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="themes/index.css">
 <link rel="stylesheet" href="css/catalogue.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/utilities.css">
 </head>
 <body>
 <nav class="sidebar" aria-label="Catalogue"></nav>
@@ -23,10 +24,10 @@
   <h2 id="surfaces">Surfaces</h2>
   <p class="doc-desc">Four steps from page background to the most raised fill. In light mode cards sit lighter than the page; in dark mode the steps climb toward lighter greys.</p>
   <div class="ramp">
-    <div style="background:var(--surface-0)">surface-0</div>
-    <div style="background:var(--surface-1)">surface-1</div>
-    <div style="background:var(--surface-2)">surface-2</div>
-    <div style="background:var(--surface-3)">surface-3</div>
+    <div class="bg-surface-0">surface-0</div>
+    <div class="bg-surface-1">surface-1</div>
+    <div class="bg-surface-2">surface-2</div>
+    <div class="bg-surface-3">surface-3</div>
   </div>
 </section>
 
@@ -34,10 +35,10 @@
   <h2 id="brand">Brand</h2>
   <p class="doc-desc">Values shown are the live computed values for the active theme and mode.</p>
   <div class="swatches">
-    <div class="swatch"><div class="swatch__chip" style="background:var(--color-primary)"></div><div class="swatch__info"><span class="swatch__name">--color-primary</span><span class="swatch__value" data-token-value="--color-primary"></span><span class="meta">Actions, links, focus</span></div></div>
-    <div class="swatch"><div class="swatch__chip" style="background:var(--color-primary-hover)"></div><div class="swatch__info"><span class="swatch__name">--color-primary-hover</span><span class="swatch__value" data-token-value="--color-primary-hover"></span><span class="meta">Hover on primary</span></div></div>
-    <div class="swatch"><div class="swatch__chip" style="background:var(--color-secondary)"></div><div class="swatch__info"><span class="swatch__name">--color-secondary</span><span class="swatch__value" data-token-value="--color-secondary"></span><span class="meta">Supporting brand colour</span></div></div>
-    <div class="swatch"><div class="swatch__chip" style="background:var(--color-accent)"></div><div class="swatch__info"><span class="swatch__name">--color-accent</span><span class="swatch__value" data-token-value="--color-accent"></span><span class="meta">Highlights and data accents</span></div></div>
+    <div class="swatch"><div class="swatch__chip bg-color-primary"></div><div class="swatch__info"><span class="swatch__name">--color-primary</span><span class="swatch__value" data-token-value="--color-primary"></span><span class="meta">Actions, links, focus</span></div></div>
+    <div class="swatch"><div class="swatch__chip bg-color-primary-hover"></div><div class="swatch__info"><span class="swatch__name">--color-primary-hover</span><span class="swatch__value" data-token-value="--color-primary-hover"></span><span class="meta">Hover on primary</span></div></div>
+    <div class="swatch"><div class="swatch__chip bg-color-secondary"></div><div class="swatch__info"><span class="swatch__name">--color-secondary</span><span class="swatch__value" data-token-value="--color-secondary"></span><span class="meta">Supporting brand colour</span></div></div>
+    <div class="swatch"><div class="swatch__chip bg-color-accent"></div><div class="swatch__info"><span class="swatch__name">--color-accent</span><span class="swatch__value" data-token-value="--color-accent"></span><span class="meta">Highlights and data accents</span></div></div>
   </div>
 </section>
 
@@ -45,12 +46,12 @@
   <h2 id="status">Status</h2>
   <p class="doc-desc">Each status colour gets a derived soft tint for backgrounds, used by badges and alerts.</p>
   <div class="swatches">
-    <div class="swatch"><div class="swatch__chip" style="background:var(--color-success)"></div><div class="swatch__info"><span class="swatch__name">--color-success</span><span class="swatch__value" data-token-value="--color-success"></span><span class="meta">Confirmations</span></div></div>
-    <div class="swatch"><div class="swatch__chip" style="background:var(--color-warning)"></div><div class="swatch__info"><span class="swatch__name">--color-warning</span><span class="swatch__value" data-token-value="--color-warning"></span><span class="meta">Needs attention</span></div></div>
-    <div class="swatch"><div class="swatch__chip" style="background:var(--color-danger)"></div><div class="swatch__info"><span class="swatch__name">--color-danger</span><span class="swatch__value" data-token-value="--color-danger"></span><span class="meta">Errors, destructive</span></div></div>
-    <div class="swatch"><div class="swatch__chip" style="background:var(--color-info)"></div><div class="swatch__info"><span class="swatch__name">--color-info</span><span class="swatch__value" data-token-value="--color-info"></span><span class="meta">Neutral notices</span></div></div>
+    <div class="swatch"><div class="swatch__chip bg-color-success"></div><div class="swatch__info"><span class="swatch__name">--color-success</span><span class="swatch__value" data-token-value="--color-success"></span><span class="meta">Confirmations</span></div></div>
+    <div class="swatch"><div class="swatch__chip bg-color-warning"></div><div class="swatch__info"><span class="swatch__name">--color-warning</span><span class="swatch__value" data-token-value="--color-warning"></span><span class="meta">Needs attention</span></div></div>
+    <div class="swatch"><div class="swatch__chip bg-color-danger"></div><div class="swatch__info"><span class="swatch__name">--color-danger</span><span class="swatch__value" data-token-value="--color-danger"></span><span class="meta">Errors, destructive</span></div></div>
+    <div class="swatch"><div class="swatch__chip bg-color-info"></div><div class="swatch__info"><span class="swatch__name">--color-info</span><span class="swatch__value" data-token-value="--color-info"></span><span class="meta">Neutral notices</span></div></div>
   </div>
-  <div class="demo" style="margin-top:var(--space-4)">
+  <div class="demo u-mt-4">
     <span class="badge badge--success">Success</span>
     <span class="badge badge--warning">Warning</span>
     <span class="badge badge--danger">Danger</span>
@@ -63,11 +64,11 @@
 <section class="doc-section" aria-labelledby="text">
   <h2 id="text">Text and borders</h2>
   <div class="swatches">
-    <div class="swatch"><div class="swatch__chip" style="background:var(--text-1)"></div><div class="swatch__info"><span class="swatch__name">--text-1</span><span class="swatch__value" data-token-value="--text-1"></span><span class="meta">Headings, body</span></div></div>
-    <div class="swatch"><div class="swatch__chip" style="background:var(--text-2)"></div><div class="swatch__info"><span class="swatch__name">--text-2</span><span class="swatch__value" data-token-value="--text-2"></span><span class="meta">Secondary copy</span></div></div>
-    <div class="swatch"><div class="swatch__chip" style="background:var(--text-3)"></div><div class="swatch__info"><span class="swatch__name">--text-3</span><span class="swatch__value" data-token-value="--text-3"></span><span class="meta">Hints, meta</span></div></div>
-    <div class="swatch"><div class="swatch__chip" style="background:var(--border)"></div><div class="swatch__info"><span class="swatch__name">--border</span><span class="swatch__value" data-token-value="--border"></span><span class="meta">Dividers, card edges</span></div></div>
-    <div class="swatch"><div class="swatch__chip" style="background:var(--border-strong)"></div><div class="swatch__info"><span class="swatch__name">--border-strong</span><span class="swatch__value" data-token-value="--border-strong"></span><span class="meta">Input edges</span></div></div>
+    <div class="swatch"><div class="swatch__chip bg-text-1"></div><div class="swatch__info"><span class="swatch__name">--text-1</span><span class="swatch__value" data-token-value="--text-1"></span><span class="meta">Headings, body</span></div></div>
+    <div class="swatch"><div class="swatch__chip bg-text-2"></div><div class="swatch__info"><span class="swatch__name">--text-2</span><span class="swatch__value" data-token-value="--text-2"></span><span class="meta">Secondary copy</span></div></div>
+    <div class="swatch"><div class="swatch__chip bg-text-3"></div><div class="swatch__info"><span class="swatch__name">--text-3</span><span class="swatch__value" data-token-value="--text-3"></span><span class="meta">Hints, meta</span></div></div>
+    <div class="swatch"><div class="swatch__chip bg-border"></div><div class="swatch__info"><span class="swatch__name">--border</span><span class="swatch__value" data-token-value="--border"></span><span class="meta">Dividers, card edges</span></div></div>
+    <div class="swatch"><div class="swatch__chip bg-border-strong"></div><div class="swatch__info"><span class="swatch__name">--border-strong</span><span class="swatch__value" data-token-value="--border-strong"></span><span class="meta">Input edges</span></div></div>
   </div>
 </section>
 
@@ -75,12 +76,12 @@
   <h2 id="contrast">Contrast</h2>
   <p class="doc-desc">Ratios are calculated in the browser from the computed token values, using the WCAG 2 formula. Switch theme to see how each brand holds up.</p>
   <div class="pairs">
-    <div class="pair" style="background:var(--surface-0);color:var(--text-1)"><span class="pair__sample">Body text on page</span><span data-contrast="--text-1|--surface-0" class="badge"></span></div>
-    <div class="pair" style="background:var(--surface-1);color:var(--text-2)"><span class="pair__sample">Secondary on card</span><span data-contrast="--text-2|--surface-1" class="badge"></span></div>
-    <div class="pair" style="background:var(--surface-1);color:var(--text-3)"><span class="pair__sample">Meta on card</span><span data-contrast="--text-3|--surface-1" class="badge"></span></div>
-    <div class="pair" style="background:var(--color-primary);color:var(--text-on-primary)"><span class="pair__sample">Primary button label</span><span data-contrast="--text-on-primary|--color-primary" class="badge"></span></div>
-    <div class="pair" style="background:var(--surface-0);color:var(--color-primary)"><span class="pair__sample">Link on page</span><span data-contrast="--color-primary|--surface-0" class="badge"></span></div>
-    <div class="pair" style="background:var(--surface-1);color:var(--color-danger)"><span class="pair__sample">Error text on card</span><span data-contrast="--color-danger|--surface-1" class="badge"></span></div>
+    <div class="pair bg-surface-0 fg-text-1"><span class="pair__sample">Body text on page</span><span data-contrast="--text-1|--surface-0" class="badge"></span></div>
+    <div class="pair bg-surface-1 fg-text-2"><span class="pair__sample">Secondary on card</span><span data-contrast="--text-2|--surface-1" class="badge"></span></div>
+    <div class="pair bg-surface-1 fg-text-3"><span class="pair__sample">Meta on card</span><span data-contrast="--text-3|--surface-1" class="badge"></span></div>
+    <div class="pair bg-color-primary fg-text-on-primary"><span class="pair__sample">Primary button label</span><span data-contrast="--text-on-primary|--color-primary" class="badge"></span></div>
+    <div class="pair bg-surface-0 fg-color-primary"><span class="pair__sample">Link on page</span><span data-contrast="--color-primary|--surface-0" class="badge"></span></div>
+    <div class="pair bg-surface-1 fg-color-danger"><span class="pair__sample">Error text on card</span><span data-contrast="--color-danger|--surface-1" class="badge"></span></div>
   </div>
 </section>
 </main>

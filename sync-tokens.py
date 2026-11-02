@@ -14,6 +14,7 @@ Checks:
   3. Every var(--x) used in css/, js/ and the HTML pages is defined by the
      contract, by a derived token, or locally inside a component.
   4. No colour literals (#hex, rgb(), hsl(), oklch()) outside themes/.
+  5. No inline style="" attributes in the HTML pages.
 
 Standard library only. Paths are relative to this file.
 """
@@ -121,10 +122,10 @@ def main():
         for i, line in enumerate(strip_comments(src.read_text()).splitlines(), 1):
             if literal.search(line):
                 errors.append(f"{src.relative_to(ROOT)}:{i}: colour literal outside themes/: {line.strip()}")
+    # Lint: no style="" attributes; they would need 'unsafe-inline' in the CSP.
     for src in ROOT.glob("*.html"):
-        for style in re.findall(r'style="([^"]*)"', src.read_text()):
-            if literal.search(style):
-                errors.append(f"{src.name}: colour literal in inline style: {style}")
+        for style in re.findall(r'\sstyle="([^"]*)"', src.read_text()):
+            errors.append(f"{src.name}: inline style attribute (use a class in css/utilities.css): {style}")
 
     if "--json" in args:
         print(json.dumps({"contract": contract, "themes": data}, indent=2))
