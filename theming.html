@@ -70,7 +70,7 @@
   <ol class="flow">
     <li><b>Copy a theme file</b><span>Duplicate <code>themes/neutral.css</code> as <code>themes/acme.css</code> and rename the selectors.</span></li>
     <li><b>Fill the contract</b><span>Change values only. Keep every token name.</span></li>
-    <li><b>Register it</b><span>Add an <code>@import</code> and an <code>acme:Acme</code> entry to <code>themes/index.css</code>.</span></li>
+    <li><b>Register it</b><span>Add an <code>@import</code> to <code>themes/index.css</code> and <code>{ id: "acme", label: "Acme" }</code> to <code>THEMES</code> in <code>js/theme-init.js</code>.</span></li>
     <li><b>Validate</b><span>Run <code>python3 sync-tokens.py</code>; it fails if a token is missing.</span></li>
   </ol>
 </section>
