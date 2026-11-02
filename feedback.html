@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feedback and overlays | Multi-brand design system</title>
+<meta name="description" content="Badges, alerts, toasts, dialogs, tooltips, progress and loading states.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="themes/index.css">
+<link rel="stylesheet" href="css/catalogue.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="Catalogue"></nav>
+<main class="main" id="main">
+<header class="page-head">
+  <h1 class="page-title">Feedback and overlays</h1>
+  <p class="page-lede">How the interface reports what happened. Messages say what changed and what to do next, in the interface's voice.</p>
+</header>
+
+<section class="doc-section" aria-labelledby="badges">
+  <h2 id="badges">Badges</h2>
+  <div class="demo">
+    <span class="badge">Draft</span>
+    <span class="badge badge--primary">Primary</span>
+    <span class="badge badge--accent">New</span>
+    <span class="badge badge--success"><span class="badge__dot"></span>Live</span>
+    <span class="badge badge--warning">Low stock</span>
+    <span class="badge badge--danger">Failed</span>
+    <span class="badge badge--info">Beta</span>
+    <span class="badge badge--solid">12</span>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="alerts">
+  <h2 id="alerts">Alerts</h2>
+  <div class="demo demo--stack">
+    <div class="alert" role="status">
+      <svg class="alert__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+      <span class="alert__title">Prices update on Monday</span><span class="alert__body">Items in your cart keep today's price until Sunday at midnight.</span>
+    </div>
+    <div class="alert alert--success" role="status">
+      <svg class="alert__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>
+      <span class="alert__title">Order placed</span><span class="alert__body">A confirmation is on its way to sam@example.com.</span>
+    </div>
+    <div class="alert alert--warning" role="status">
+      <svg class="alert__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17h.01"/></svg>
+      <span class="alert__title">Only 2 left in medium</span><span class="alert__body">Check out within 15 minutes to hold your size.</span>
+    </div>
+    <div class="alert alert--danger" role="alert">
+      <svg class="alert__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+      <span class="alert__title">Card declined</span><span class="alert__body">The bank did not approve the payment. Try another card or contact your bank.</span>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="overlays">
+  <h2 id="overlays">Toasts, dialogs and tooltips</h2>
+  <p class="doc-desc">Toasts confirm an action and leave on their own. Dialogs interrupt and need an answer. The dialog is a native <code>&lt;dialog&gt;</code>, so focus trapping and Escape come for free.</p>
+  <div class="demo">
+    <button class="btn btn--secondary" type="button" data-toast="Saved to your list">Save to list</button>
+    <button class="btn btn--danger" type="button" data-open-dialog="delete-dialog">Delete list</button>
+    <span class="tooltip-host">
+      <button class="btn btn--ghost btn--icon" type="button" aria-describedby="tip-1" aria-label="Shipping info">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+      </button>
+      <span class="tooltip" role="tooltip" id="tip-1">Free over $100</span>
+    </span>
+  </div>
+  <dialog class="dialog" id="delete-dialog" aria-labelledby="delete-title" data-confirm-toast="List deleted">
+    <form method="dialog">
+      <div class="dialog__head"><h2 id="delete-title">Delete this list?</h2></div>
+      <div class="dialog__body">
+        <p>“Weekend pack list” and its 12 items will be removed. This cannot be undone.</p>
+        <label class="check"><input type="checkbox">Also remove items from my cart</label>
+      </div>
+      <div class="dialog__foot">
+        <button class="btn btn--ghost" value="cancel">Keep list</button>
+        <button class="btn btn--danger" value="confirm">Delete list</button>
+      </div>
+    </form>
+  </dialog>
+</section>
+
+<section class="doc-section" aria-labelledby="progress">
+  <h2 id="progress">Progress and loading</h2>
+  <div class="demo demo--stack">
+    <div class="field">
+      <span class="field__label" id="up-label">Uploading photos</span>
+      <div class="progress" id="up-progress" role="progressbar" aria-labelledby="up-label" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40"><div class="progress__bar" style="width:40%"></div></div>
+    </div>
+    <div class="progress progress--success" role="progressbar" aria-label="Storage used" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72"><div class="progress__bar" style="width:72%"></div></div>
+    <div><button class="btn btn--secondary btn--sm" type="button" data-progress-demo="#up-progress">Advance upload</button></div>
+    <div style="display:grid;gap:var(--space-2);max-width:420px" aria-label="Loading" role="status">
+      <div class="skeleton" style="height:16px;width:60%"></div>
+      <div class="skeleton" style="height:12px"></div>
+      <div class="skeleton" style="height:12px;width:85%"></div>
+    </div>
+  </div>
+</section>
+</main>
+<script src="js/contract.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>

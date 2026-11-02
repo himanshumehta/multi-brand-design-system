@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navigation | Multi-brand design system</title>
+<meta name="description" content="Top bar, tabs, breadcrumbs, pagination, segmented control and stepper.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="themes/index.css">
+<link rel="stylesheet" href="css/catalogue.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="Catalogue"></nav>
+<main class="main" id="main">
+<header class="page-head">
+  <h1 class="page-title">Navigation</h1>
+  <p class="page-lede">Ways to move between places and views. The current location is always marked with <code>aria-current</code> and styled from that attribute, so markup and visuals cannot drift apart.</p>
+</header>
+
+<section class="doc-section" aria-labelledby="topbar">
+  <h2 id="topbar">Top bar</h2>
+  <nav class="topbar" aria-label="Example site">
+    <span class="topbar__brand">Trailhead</span>
+    <ul class="topbar__links">
+      <li><a href="navigation.html#topbar" aria-current="page">Packs</a></li>
+      <li><a href="navigation.html#topbar">Shelters</a></li>
+      <li><a href="navigation.html#topbar">Guides</a></li>
+    </ul>
+    <div class="topbar__end">
+      <button class="btn btn--ghost btn--sm" type="button">Sign in</button>
+      <button class="btn btn--primary btn--sm" type="button">Cart (2)</button>
+    </div>
+  </nav>
+</section>
+
+<section class="doc-section" aria-labelledby="tabs">
+  <h2 id="tabs">Tabs</h2>
+  <p class="doc-desc">Arrow keys move between tabs.</p>
+  <div class="demo demo--stack">
+    <div class="tabs" role="tablist" aria-label="Product details">
+      <button class="tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" type="button">Overview</button>
+      <button class="tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1" type="button">Specs</button>
+      <button class="tab" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1" type="button">Reviews (128)</button>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0">A 40-litre roll-top daypack built for commutes that turn into hikes.</div>
+    <div class="tabpanel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" tabindex="0" hidden>1.1 kg, recycled 420D nylon, 16-inch laptop sleeve, 46 to 52 cm back length.</div>
+    <div class="tabpanel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" tabindex="0" hidden>Rated 4.6 out of 5 by 128 owners. Most praise the hip belt.</div>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="crumbs">
+  <h2 id="crumbs">Breadcrumbs and pagination</h2>
+  <div class="demo demo--stack">
+    <nav aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cards.html">Packs</a></li>
+        <li><a href="tables.html">Daypacks</a></li>
+        <li><span aria-current="page">Atlas 40</span></li>
+      </ol>
+    </nav>
+    <nav aria-label="Pagination">
+      <ul class="pagination">
+        <li><a href="navigation.html#crumbs" aria-label="Previous page">&lsaquo;</a></li>
+        <li><a href="navigation.html#crumbs">1</a></li>
+        <li><a href="navigation.html#crumbs" aria-current="page">2</a></li>
+        <li><a href="navigation.html#crumbs">3</a></li>
+        <li><span aria-hidden="true">&hellip;</span></li>
+        <li><a href="navigation.html#crumbs">9</a></li>
+        <li><a href="navigation.html#crumbs" aria-label="Next page">&rsaquo;</a></li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="segmented">
+  <h2 id="segmented">Segmented control</h2>
+  <p class="doc-desc">For switching between views of the same content. The light and dark switch in the sidebar is the same component.</p>
+  <div class="demo">
+    <div class="segmented" data-segmented role="group" aria-label="Layout">
+      <button class="segmented__item" type="button" aria-pressed="true">Grid</button>
+      <button class="segmented__item" type="button" aria-pressed="false">List</button>
+      <button class="segmented__item" type="button" aria-pressed="false">Map</button>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="stepper">
+  <h2 id="stepper">Stepper</h2>
+  <p class="doc-desc">Only for flows that really are sequential, such as checkout.</p>
+  <div class="demo">
+    <ol class="stepper" aria-label="Checkout progress">
+      <li class="is-done"><span>Cart</span></li>
+      <li class="is-done"><span>Delivery</span></li>
+      <li aria-current="step"><span>Payment</span></li>
+      <li><span>Review</span></li>
+    </ol>
+  </div>
+</section>
+</main>
+<script src="js/contract.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>

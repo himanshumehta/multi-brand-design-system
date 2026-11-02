@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token reference | Multi-brand design system</title>
+<meta name="description" content="Every token in the theme contract with its live value in the current theme.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="themes/index.css">
+<link rel="stylesheet" href="css/catalogue.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="Catalogue"></nav>
+<main class="main" id="main">
+<header class="page-head">
+  <h1 class="page-title">Token reference</h1>
+  <p class="page-lede">The contract has <strong id="token-count">63</strong> tokens. Every theme defines all of them; colour tokens are defined twice, once per mode. The values below are read from the page at runtime, so they change when you switch theme or mode.</p>
+</header>
+
+<section class="doc-section" aria-labelledby="derived">
+  <h2 id="derived">Derived tokens</h2>
+  <p class="doc-desc">Soft tints are not part of the contract. <code>css/catalogue.css</code> mixes them from the contract colours, so a theme only has to supply the solid values.</p>
+<pre class="code"><code>--color-primary-soft: color-mix(in srgb, var(--color-primary) 13%, transparent);
+--color-success-soft: color-mix(in srgb, var(--color-success) 14%, transparent);
+/* also: secondary, accent, warning, danger, info */</code></pre>
+</section>
+
+<div id="token-table"></div>
+</main>
+<script src="js/contract.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>

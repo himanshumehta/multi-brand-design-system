@@ -1,0 +1,112 @@
+/*
+ * Bikencars: example brand theme.
+ *
+ * Colours, fonts, radii, spacing and easings are taken verbatim from the
+ * bikencars design system's shared stylesheet (zinc surfaces, bike blue
+ * #4783ff, cars rose #f43f5e, brand orange #FF6600, Inter). The original was
+ * dark-first; its light scale came from the `html.light` override block.
+ * Only the semantic mapping is new.
+ */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+[data-theme="bikencars"] {
+  /* Colour: light (from html.light) */
+  --surface-0: #ffffff;
+  --surface-1: #f9fafb;
+  --surface-2: #f3f4f6;
+  --surface-3: #e5e7eb;
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+  --text-1: #111827;
+  --text-2: #4b5563;
+  --text-3: #6b7280;
+  --text-on-primary: #ffffff;
+  --color-primary: #4783ff;      /* bike blue */
+  --color-primary-hover: #3a6fe0;
+  --color-secondary: #f43f5e;    /* cars rose */
+  --color-accent: #ff6600;       /* brand orange */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #3b82f6;
+  --focus-ring: #4783ff;
+  --overlay: rgba(0, 0, 0, 0.5);
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-3: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+  /* Type */
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "SF Mono", "Fira Code", "JetBrains Mono", monospace;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+  --weight-display: 900;
+  --tracking-display: -0.02em;
+  --case-display: none;
+  --leading-tight: 1.15;
+  --leading-body: 1.6;
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 14px;
+  --text-lg: 16px;
+  --text-xl: 18px;
+  --text-2xl: 22px;
+  --text-3xl: 28px;
+  --text-4xl: 36px;
+
+  /* Space (original --space-1 … --space-10) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 48px;
+  --space-10: 64px;
+
+  /* Shape */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-pill: 9999px;
+
+  /* Motion (original --transition-fast/base + named easings) */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 400ms;
+  --ease-standard: cubic-bezier(0.25, 0.46, 0.45, 0.94);   /* ease-premium */
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);        /* ease-out-expo */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-theme="bikencars"][data-mode="dark"] {
+  /* Colour: dark (the original :root defaults) */
+  --surface-0: #09090b;
+  --surface-1: #0f0f12;
+  --surface-2: #18181b;
+  --surface-3: #27272a;
+  --border: #27272a;
+  --border-strong: #3f3f46;
+  --text-1: #f4f4f5;
+  --text-2: #a1a1aa;
+  --text-3: #71717a;
+  --text-on-primary: #ffffff;
+  --color-primary: #4783ff;
+  --color-primary-hover: #5f93ff;
+  --color-secondary: #f43f5e;
+  --color-accent: #ff6600;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #3b82f6;
+  --focus-ring: #4783ff;
+  --overlay: rgba(0, 0, 0, 0.6);
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-3: 0 12px 32px rgba(0, 0, 0, 0.6);
+}

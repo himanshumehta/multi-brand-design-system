@@ -1,0 +1,113 @@
+/*
+ * Neutral: the default theme.
+ *
+ * Cool graphite surfaces, a cobalt primary and a teal accent. Schibsted
+ * Grotesk for display and body, JetBrains Mono for code.
+ *
+ * Every theme defines the full token contract (see js/contract.js):
+ *   [data-theme="<id>"]                    light mode + all non-colour tokens
+ *   [data-theme="<id>"][data-mode="dark"]  dark-mode colour overrides
+ */
+@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap");
+
+:root:not([data-theme]),
+[data-theme="neutral"] {
+  /* Colour: light */
+  --surface-0: #f3f4f1;
+  --surface-1: #ffffff;
+  --surface-2: #ebede9;
+  --surface-3: #dfe2dd;
+  --border: #d5d9d3;
+  --border-strong: #a3aaa3;
+  --text-1: #181b19;
+  --text-2: #464e48;
+  --text-3: #636b65;
+  --text-on-primary: #ffffff;
+  --color-primary: #2d47c4;
+  --color-primary-hover: #22389f;
+  --color-secondary: #4e5a66;
+  --color-accent: #0b7a6e;
+  --color-success: #1e7a47;
+  --color-warning: #955800;
+  --color-danger: #b42330;
+  --color-info: #2160a8;
+  --focus-ring: #5b73e8;
+  --overlay: rgba(20, 24, 22, 0.48);
+  --shadow-1: 0 1px 2px rgba(24, 27, 25, 0.08);
+  --shadow-2: 0 2px 6px rgba(24, 27, 25, 0.07), 0 8px 24px rgba(24, 27, 25, 0.06);
+  --shadow-3: 0 16px 48px rgba(24, 27, 25, 0.2);
+
+  /* Type */
+  --font-display: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+  --weight-display: 800;
+  --tracking-display: -0.02em;
+  --case-display: none;
+  --leading-tight: 1.1;
+  --leading-body: 1.55;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5625rem;
+  --text-2xl: 1.953rem;
+  --text-3xl: 2.441rem;
+  --text-4xl: 3.052rem;
+
+  /* Space (4px base, widening steps) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 80px;
+  --space-10: 112px;
+
+  /* Shape */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --duration-fast: 100ms;
+  --duration-base: 180ms;
+  --duration-slow: 320ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --ease-spring: cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+[data-theme="neutral"][data-mode="dark"] {
+  --surface-0: #111312;
+  --surface-1: #181b19;
+  --surface-2: #212522;
+  --surface-3: #2b302c;
+  --border: #313732;
+  --border-strong: #4f5751;
+  --text-1: #eceeea;
+  --text-2: #b3bab4;
+  --text-3: #8f9791;
+  --text-on-primary: #0e1433;
+  --color-primary: #93a6ff;
+  --color-primary-hover: #b3c0ff;
+  --color-secondary: #a7b2be;
+  --color-accent: #4cc2b2;
+  --color-success: #5cc98a;
+  --color-warning: #e8a846;
+  --color-danger: #f2737b;
+  --color-info: #6fa8ee;
+  --focus-ring: #93a6ff;
+  --overlay: rgba(0, 0, 0, 0.6);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 2px 6px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-3: 0 16px 48px rgba(0, 0, 0, 0.55);
+}

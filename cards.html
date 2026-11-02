@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cards | Multi-brand design system</title>
+<meta name="description" content="Product, stat, list, media and empty-state cards.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="themes/index.css">
+<link rel="stylesheet" href="css/catalogue.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="Catalogue"></nav>
+<main class="main" id="main">
+<header class="page-head">
+  <h1 class="page-title">Cards</h1>
+  <p class="page-lede">Cards group one subject. Outlined cards sit flat in a layout; raised cards float above it and are reserved for things you can act on.</p>
+</header>
+
+<section class="doc-section" aria-labelledby="product">
+  <h2 id="product">Product cards</h2>
+  <div class="grid grid--3">
+    <article class="card card--raised">
+      <div class="card__media"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 8V6a6 6 0 0 1 12 0v2"/><rect x="3" y="8" width="18" height="14" rx="2"/></svg></div>
+      <div class="card__body"><span class="badge badge--accent" style="justify-self:start">Best seller</span><h3 class="card__title">Atlas 40</h3><p class="card__text">Everyday daypack with a roll-top and padded laptop sleeve.</p></div>
+      <div class="card__footer"><span class="price">$129</span><button class="btn btn--primary btn--sm" type="button" data-toast="Added Atlas 40 to your cart">Add to cart</button></div>
+    </article>
+    <article class="card card--raised">
+      <div class="card__media"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 20l6-12 4 7 3-4 5 9z"/></svg></div>
+      <div class="card__body"><span class="badge badge--success" style="justify-self:start"><span class="badge__dot"></span>In stock</span><h3 class="card__title">Atlas 55</h3><p class="card__text">Overnight pack with a load-lifting frame and rain cover.</p></div>
+      <div class="card__footer"><span class="price">$189</span><button class="btn btn--primary btn--sm" type="button" data-toast="Added Atlas 55 to your cart">Add to cart</button></div>
+    </article>
+    <article class="card card--raised">
+      <div class="card__media"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+      <div class="card__body"><span class="badge badge--warning" style="justify-self:start">Pre-order</span><h3 class="card__title">Atlas 70</h3><p class="card__text">Expedition pack. Ships in March with a lifetime repair plan.</p></div>
+      <div class="card__footer"><span class="price">$259</span><button class="btn btn--secondary btn--sm" type="button" data-toast="Pre-order placed for Atlas 70">Pre-order</button></div>
+    </article>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="stats">
+  <h2 id="stats">Stat cards</h2>
+  <p class="doc-desc">One number, one label, one change. Deltas use the success and danger colours.</p>
+  <div class="grid grid--4">
+    <div class="card"><div class="stat"><span class="stat__label">Orders this week</span><span class="stat__value">1,284</span><span class="stat__delta stat__delta--up">Up 12% on last week</span></div></div>
+    <div class="card"><div class="stat"><span class="stat__label">Average basket</span><span class="stat__value">$86</span><span class="stat__delta stat__delta--up">Up $4</span></div></div>
+    <div class="card"><div class="stat"><span class="stat__label">Returns</span><span class="stat__value">2.1%</span><span class="stat__delta stat__delta--down">Up 0.3 points</span></div></div>
+    <div class="card"><div class="stat"><span class="stat__label">Repair requests</span><span class="stat__value">37</span><span class="stat__delta" style="color:var(--text-3)">No change</span></div></div>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="lists">
+  <h2 id="lists">List and interactive cards</h2>
+  <div class="grid grid--2">
+    <div class="card">
+      <div class="card__body" style="padding-bottom:var(--space-3)"><h3 class="card__title">Recent reviews</h3></div>
+      <ul class="list">
+        <li class="list__item"><span style="display:flex;gap:var(--space-3);align-items:center"><span class="avatar">JL</span>Comfortable on a 20 km day</span><span class="badge badge--success">5.0</span></li>
+        <li class="list__item"><span style="display:flex;gap:var(--space-3);align-items:center"><span class="avatar">MO</span>Wish the hip pockets were bigger</span><span class="badge badge--warning">3.5</span></li>
+        <li class="list__item"><span style="display:flex;gap:var(--space-3);align-items:center"><span class="avatar">AK</span>Survived a week of rain</span><span class="badge badge--success">4.5</span></li>
+      </ul>
+    </div>
+    <a class="card card--interactive card--raised" href="tables.html">
+      <div class="card__body">
+        <span class="meta">Guide</span>
+        <h3 class="card__title">Compare all three Atlas packs</h3>
+        <p class="card__text">Capacity, weight, back length and price in one table, with the best value in each row marked.</p>
+      </div>
+      <div class="card__footer"><span class="meta">4 minute read</span><span class="btn btn--soft btn--sm">Open comparison</span></div>
+    </a>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="empty">
+  <h2 id="empty">Empty state</h2>
+  <div class="empty">
+    <span class="empty__title">No saved packs yet</span>
+    <p>Save a pack from any product page to compare it here later.</p>
+    <a class="btn btn--primary" href="cards.html#product">Browse packs</a>
+  </div>
+</section>
+</main>
+<script src="js/contract.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forms | Multi-brand design system</title>
+<meta name="description" content="Text inputs, selects, choices, switches and validation states.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="themes/index.css">
+<link rel="stylesheet" href="css/catalogue.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="Catalogue"></nav>
+<main class="main" id="main">
+<header class="page-head">
+  <h1 class="page-title">Forms</h1>
+  <p class="page-lede">Labels sit above fields, hints sit below, and errors replace hints in the danger colour. Focus rings use the theme's primary.</p>
+</header>
+
+<section class="doc-section" aria-labelledby="text-inputs">
+  <h2 id="text-inputs">Text inputs</h2>
+  <div class="demo">
+    <div class="form-grid" style="width:100%">
+      <div class="field"><label class="field__label" for="f-name">Full name</label><input class="input" id="f-name" placeholder="Sam Rivera"><span class="field__hint">As it appears on your card.</span></div>
+      <div class="field"><label class="field__label" for="f-price">Budget</label><div class="input-group"><span class="input-group__addon">$</span><input class="input" id="f-price" inputmode="decimal" value="250"></div></div>
+      <div class="field"><label class="field__label" for="f-dis">Account ID</label><input class="input" id="f-dis" value="AC-20931" disabled><span class="field__hint">Set by the system.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="validation">
+  <h2 id="validation">Validation</h2>
+  <div class="demo">
+    <div class="form-grid" style="width:100%">
+      <div class="field field--error"><label class="field__label" for="f-email">Email</label><input class="input" id="f-email" value="sam@example" aria-invalid="true" aria-describedby="f-email-hint"><span class="field__hint" id="f-email-hint">Add the domain ending, for example sam@example.com.</span></div>
+      <div class="field field--success"><label class="field__label" for="f-user">Username</label><input class="input" id="f-user" value="samrivera" aria-describedby="f-user-hint"><span class="field__hint" id="f-user-hint">Available.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="choices">
+  <h2 id="choices">Choices</h2>
+  <div class="grid grid--3">
+    <fieldset class="demo demo--stack" style="margin:0">
+      <legend class="field__label">Delivery</legend>
+      <label class="check"><input type="radio" name="ship" checked>Standard, 3 to 5 days</label>
+      <label class="check"><input type="radio" name="ship">Express, next day</label>
+      <label class="check"><input type="radio" name="ship">Collect in store</label>
+    </fieldset>
+    <fieldset class="demo demo--stack" style="margin:0">
+      <legend class="field__label">Email me about</legend>
+      <label class="check"><input type="checkbox" checked>Order updates</label>
+      <label class="check"><input type="checkbox">Restocks</label>
+      <label class="check"><input type="checkbox">New products</label>
+    </fieldset>
+    <div class="demo demo--stack">
+      <span class="field__label">Settings</span>
+      <label class="switch"><input type="checkbox" checked><span class="switch__track"></span>Two-step sign in</label>
+      <label class="switch"><input type="checkbox"><span class="switch__track"></span>Public profile</label>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="sample-form">
+  <h2 id="sample-form">A complete form</h2>
+  <p class="doc-desc">Submitting shows a toast instead of sending anything.</p>
+  <form class="demo demo--stack" onsubmit="return false">
+    <div class="form-grid">
+      <div class="field"><label class="field__label" for="s-first">First name</label><input class="input" id="s-first" autocomplete="given-name"></div>
+      <div class="field"><label class="field__label" for="s-last">Last name</label><input class="input" id="s-last" autocomplete="family-name"></div>
+      <div class="field"><label class="field__label" for="s-topic">Topic</label>
+        <select class="select" id="s-topic"><option>Order question</option><option>Returns</option><option>Product advice</option></select></div>
+      <div class="field field--full"><label class="field__label" for="s-msg">Message</label><textarea class="textarea" id="s-msg" placeholder="What can we help with?"></textarea><span class="field__hint">We reply within one working day.</span></div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn--ghost" type="reset">Clear</button>
+      <button class="btn btn--primary" type="submit" data-toast="Message sent">Send message</button>
+    </div>
+  </form>
+</section>
+</main>
+<script src="js/contract.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>

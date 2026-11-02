@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buttons | Multi-brand design system</title>
+<meta name="description" content="Button variants, sizes, states, icon buttons and groups.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="themes/index.css">
+<link rel="stylesheet" href="css/catalogue.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="Catalogue"></nav>
+<main class="main" id="main">
+<header class="page-head">
+  <h1 class="page-title">Buttons</h1>
+  <p class="page-lede">One <code>.btn</code> class with modifiers. Variants only swap three local variables (background, foreground, border), so a new variant is three lines of CSS.</p>
+</header>
+
+<section class="doc-section" aria-labelledby="variants">
+  <h2 id="variants">Variants</h2>
+  <p class="doc-desc">Use one primary per view. Secondary for the alternative, soft and ghost for low-emphasis actions, danger only for actions that destroy data.</p>
+  <div class="demo">
+    <button class="btn btn--primary" type="button">Save changes</button>
+    <button class="btn btn--secondary" type="button">Preview</button>
+    <button class="btn btn--soft" type="button">Duplicate</button>
+    <button class="btn btn--ghost" type="button">Cancel</button>
+    <button class="btn btn--danger" type="button">Delete project</button>
+  </div>
+<pre class="code"><code>&lt;button class="btn btn--primary"&gt;Save changes&lt;/button&gt;
+&lt;button class="btn btn--secondary"&gt;Preview&lt;/button&gt;</code></pre>
+</section>
+
+<section class="doc-section" aria-labelledby="sizes">
+  <h2 id="sizes">Sizes and shapes</h2>
+  <div class="demo">
+    <button class="btn btn--primary btn--sm" type="button">Small</button>
+    <button class="btn btn--primary" type="button">Default</button>
+    <button class="btn btn--primary btn--lg" type="button">Large</button>
+    <button class="btn btn--secondary btn--pill" type="button">Pill</button>
+  </div>
+  <div class="demo">
+    <button class="btn btn--primary btn--block" type="button">Full width</button>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="states">
+  <h2 id="states">States</h2>
+  <p class="doc-desc">Hover and press are handled in CSS. Busy buttons keep their width, hide the label and show a spinner; press the last one to see it.</p>
+  <div class="demo">
+    <button class="btn btn--primary" type="button">Enabled</button>
+    <button class="btn btn--primary" type="button" disabled>Disabled</button>
+    <button class="btn btn--secondary" type="button" disabled>Disabled</button>
+    <button class="btn btn--primary" type="button" data-busy-demo="Report exported">Export report</button>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="icons">
+  <h2 id="icons">With icons</h2>
+  <p class="doc-desc">Icon-only buttons need an <code>aria-label</code>.</p>
+  <div class="demo">
+    <button class="btn btn--primary" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New item
+    </button>
+    <button class="btn btn--secondary" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>Download
+    </button>
+    <button class="btn btn--secondary btn--icon" type="button" aria-label="Edit">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/></svg>
+    </button>
+    <button class="btn btn--ghost btn--icon" type="button" aria-label="More options">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+    </button>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="groups">
+  <h2 id="groups">Groups</h2>
+  <div class="demo">
+    <div class="btn-group" role="group" aria-label="Text alignment">
+      <button class="btn btn--secondary" type="button">Left</button>
+      <button class="btn btn--secondary" type="button">Centre</button>
+      <button class="btn btn--secondary" type="button">Right</button>
+    </div>
+    <div class="segmented" data-segmented role="group" aria-label="Date range">
+      <button class="segmented__item" type="button" aria-pressed="false">Day</button>
+      <button class="segmented__item" type="button" aria-pressed="true">Week</button>
+      <button class="segmented__item" type="button" aria-pressed="false">Month</button>
+    </div>
+  </div>
+</section>
+</main>
+<script src="js/contract.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>

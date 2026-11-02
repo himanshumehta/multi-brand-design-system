@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tables | Multi-brand design system</title>
+<meta name="description" content="Sortable data tables and a product spec comparison table.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="themes/index.css">
+<link rel="stylesheet" href="css/catalogue.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="Catalogue"></nav>
+<main class="main" id="main">
+<header class="page-head">
+  <h1 class="page-title">Tables</h1>
+  <p class="page-lede">Numbers align right in tabular figures. Wide tables scroll inside their own frame instead of pushing the page sideways on small screens.</p>
+</header>
+
+<section class="doc-section" aria-labelledby="compare">
+  <h2 id="compare">Spec comparison</h2>
+  <p class="doc-desc">Products as columns, specs as rows. The featured column is tinted; the best value in each row is marked in the success colour with a star.</p>
+  <div class="table-wrap">
+    <table class="table compare">
+      <thead>
+        <tr><th scope="col"><span class="meta">Spec</span></th>
+          <th scope="col"><span class="compare__name">Atlas 40</span><span class="meta">Daypack</span></th>
+          <th scope="col" class="is-featured"><span class="compare__name">Atlas 55</span><span class="badge badge--primary">Most popular</span></th>
+          <th scope="col"><span class="compare__name">Atlas 70</span><span class="meta">Expedition</span></th></tr>
+      </thead>
+      <tbody>
+        <tr class="compare__group"><th scope="rowgroup" colspan="4">Size and weight</th></tr>
+        <tr><th scope="row">Capacity</th><td>40 L</td><td class="is-featured">55 L</td><td class="is-best">70 L</td></tr>
+        <tr><th scope="row">Weight</th><td class="is-best">1.1 kg</td><td class="is-featured">1.6 kg</td><td>2.2 kg</td></tr>
+        <tr><th scope="row">Back length</th><td>46 to 52 cm</td><td class="is-featured is-best">44 to 56 cm</td><td>48 to 56 cm</td></tr>
+        <tr class="compare__group"><th scope="rowgroup" colspan="4">Features</th></tr>
+        <tr><th scope="row">Rain cover</th><td>Sold separately</td><td class="is-featured">Included</td><td>Included</td></tr>
+        <tr><th scope="row">Laptop sleeve</th><td>16 inch</td><td class="is-featured">15 inch</td><td>None</td></tr>
+        <tr><th scope="row">Warranty</th><td>5 years</td><td class="is-featured">5 years</td><td class="is-best">Lifetime repair</td></tr>
+        <tr class="compare__group"><th scope="rowgroup" colspan="4">Price</th></tr>
+        <tr><th scope="row">Price</th><td class="is-best">$129</td><td class="is-featured">$189</td><td>$259</td></tr>
+        <tr><th scope="row">Price per litre</th><td class="is-best">$3.23</td><td class="is-featured">$3.44</td><td>$3.70</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="data">
+  <h2 id="data">Sortable data table</h2>
+  <p class="doc-desc">Press a column heading to sort. The heading carries <code>aria-sort</code> so screen readers announce the order.</p>
+  <div class="table-wrap">
+    <table class="table table--striped" data-sortable>
+      <caption>Orders, last 7 days</caption>
+      <thead><tr>
+        <th scope="col"><button class="th-sort" type="button">Order</button></th>
+        <th scope="col"><button class="th-sort" type="button">Customer</button></th>
+        <th scope="col"><button class="th-sort" type="button">Status</button></th>
+        <th scope="col" class="num"><button class="th-sort" type="button">Items</button></th>
+        <th scope="col" class="num"><button class="th-sort" type="button">Total</button></th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="mono">#4821</td><td>Jo Lindqvist</td><td data-value="Shipped"><span class="badge badge--success">Shipped</span></td><td class="num">2</td><td class="num" data-value="318">$318.00</td></tr>
+        <tr><td class="mono">#4822</td><td>Mira Osei</td><td data-value="Packing"><span class="badge badge--info">Packing</span></td><td class="num">1</td><td class="num" data-value="129">$129.00</td></tr>
+        <tr><td class="mono">#4823</td><td>Arun Kale</td><td data-value="On hold"><span class="badge badge--warning">On hold</span></td><td class="num">3</td><td class="num" data-value="447">$447.00</td></tr>
+        <tr><td class="mono">#4824</td><td>Bea Duarte</td><td data-value="Refunded"><span class="badge badge--danger">Refunded</span></td><td class="num">1</td><td class="num" data-value="189">$189.00</td></tr>
+        <tr><td class="mono">#4825</td><td>Chen Wu</td><td data-value="Shipped"><span class="badge badge--success">Shipped</span></td><td class="num">4</td><td class="num" data-value="576">$576.00</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="doc-section" aria-labelledby="compact">
+  <h2 id="compact">Compact</h2>
+  <p class="doc-desc">For dense reference data such as size charts.</p>
+  <div class="table-wrap" style="max-width:560px">
+    <table class="table table--compact">
+      <thead><tr><th scope="col">Size</th><th scope="col" class="num">Torso (cm)</th><th scope="col" class="num">Hip (cm)</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Small</th><td class="num">40 to 45</td><td class="num">66 to 81</td></tr>
+        <tr><th scope="row">Medium</th><td class="num">45 to 50</td><td class="num">76 to 96</td></tr>
+        <tr><th scope="row">Large</th><td class="num">50 to 55</td><td class="num">86 to 112</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</main>
+<script src="js/contract.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>

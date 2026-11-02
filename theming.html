@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theming | Multi-brand design system</title>
+<meta name="description" content="Every theme in both colour modes on one screen, and how to add your own.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="themes/index.css">
+<link rel="stylesheet" href="css/catalogue.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<nav class="sidebar" aria-label="Catalogue"></nav>
+<main class="main" id="main">
+<header class="page-head">
+  <h1 class="page-title">Theming</h1>
+  <p class="page-lede">Themes are scoped by a <code>data-theme</code> attribute, not by <code>:root</code>. That means a theme can apply to the whole page or to one box inside it, which is how this page shows every theme and mode at once.</p>
+</header>
+
+<section class="doc-section" aria-labelledby="matrix">
+  <h2 id="matrix">Every theme, both modes</h2>
+  <p class="doc-desc">The same markup, cloned into a scope per theme and mode. This grid is built from the theme registry, so a new theme appears here without editing this page.</p>
+  <div class="matrix" id="theme-matrix"></div>
+  <template id="matrix-sample">
+    <span class="matrix__label"></span>
+    <h3 class="specimen-display" style="font-size:var(--text-2xl)">Weekend pack list</h3>
+    <p style="color:var(--text-2);font-size:var(--text-sm)">Twelve items, under seven kilos. Three still to buy.</p>
+    <div class="progress" role="progressbar" aria-label="Packed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><div class="progress__bar" style="width:75%"></div></div>
+    <div class="specimen__row">
+      <span class="badge badge--success"><span class="badge__dot"></span>9 packed</span>
+      <span class="badge badge--warning">3 to buy</span>
+    </div>
+    <div class="specimen__row">
+      <button class="btn btn--primary btn--sm" type="button">Share list</button>
+      <button class="btn btn--secondary btn--sm" type="button">Edit</button>
+    </div>
+  </template>
+</section>
+
+<section class="doc-section" aria-labelledby="scoping">
+  <h2 id="scoping">How scoping works</h2>
+  <p class="doc-desc">A theme file sets the contract on an attribute selector. Dark mode is a second block that only overrides the colour group.</p>
+<pre class="code"><code>[data-theme="acme"] {
+  --surface-0: #f6f7f9;
+  --color-primary: #0a66c2;
+  --font-display: "Your Display Face", sans-serif;
+  /* …all 63 contract tokens */
+}
+
+[data-theme="acme"][data-mode="dark"] {
+  --surface-0: #0d1117;
+  --color-primary: #58a6ff;
+  /* …colour tokens only */
+}</code></pre>
+  <p class="doc-desc" style="margin-top:var(--space-4)">Any element can opt into a theme. Nested scopes win over the page scope:</p>
+<pre class="code"><code>&lt;section class="theme-scope" data-theme="acme" data-mode="dark"&gt;
+  &lt;button class="btn btn--primary"&gt;Rendered in Acme, dark&lt;/button&gt;
+&lt;/section&gt;</code></pre>
+</section>
+
+<section class="doc-section" aria-labelledby="add">
+  <h2 id="add">Add a theme</h2>
+  <ol class="flow">
+    <li><b>Copy a theme file</b><span>Duplicate <code>themes/neutral.css</code> as <code>themes/acme.css</code> and rename the selectors.</span></li>
+    <li><b>Fill the contract</b><span>Change values only. Keep every token name.</span></li>
+    <li><b>Register it</b><span>Add an <code>@import</code> and an <code>acme:Acme</code> entry to <code>themes/index.css</code>.</span></li>
+    <li><b>Validate</b><span>Run <code>python3 sync-tokens.py</code>; it fails if a token is missing.</span></li>
+  </ol>
+</section>
+</main>
+<script src="js/contract.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>

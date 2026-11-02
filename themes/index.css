@@ -1,0 +1,14 @@
+/*
+ * Theme registry. Every page links only this file.
+ *
+ * To add a theme: create themes/<id>.css that defines the full token contract,
+ * add one @import line below, and add "<id>:<Label>" to --theme-list.
+ * The sidebar switcher reads --theme-list at runtime.
+ */
+@import url("neutral.css");
+@import url("bikencars.css");
+@import url("marquee.css");
+
+:root {
+  --theme-list: "neutral:Neutral,bikencars:Bikencars,marquee:Marquee";
+}
