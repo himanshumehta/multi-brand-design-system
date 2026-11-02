@@ -139,7 +139,7 @@
     }
     function render() {
       var cs = rootStyle();
-      tokenHost.innerHTML = "";
+      tokenHost.replaceChildren();
       var total = 0;
       window.TOKEN_CONTRACT.forEach(function (g) {
         var section = document.createElement("section");
@@ -153,7 +153,13 @@
         wrap.className = "table-wrap";
         var table = document.createElement("table");
         table.className = "table table--compact token-table";
-        table.innerHTML = "<thead><tr><th scope=col>Token</th><th scope=col>Current value</th><th scope=col>Preview</th></tr></thead>";
+        var headRow = table.createTHead().insertRow();
+        ["Token", "Current value", "Preview"].forEach(function (label) {
+          var th = document.createElement("th");
+          th.scope = "col";
+          th.textContent = label;
+          headRow.appendChild(th);
+        });
         var tb = document.createElement("tbody");
         g.tokens.forEach(function (name) {
           total++;
@@ -245,23 +251,19 @@
   });
 })();
 
-/* Theme matrix (theming page): one scoped clone per theme and mode. */
+/* Theme matrix (theming page): one scoped clone per registered theme and mode. */
 (function () {
   var host = document.getElementById("theme-matrix");
   var tpl = document.getElementById("matrix-sample");
-  if (!host || !tpl) return;
-  var raw = getComputedStyle(document.documentElement).getPropertyValue("--theme-list").trim().replace(/^["']|["']$/g, "");
-  raw.split(",").forEach(function (pair) {
-    var parts = pair.split(":");
-    var id = (parts[0] || "").trim(), label = (parts[1] || id).trim();
-    if (!id) return;
-    ["light", "dark"].forEach(function (mode) {
+  if (!host || !tpl || !window.MBDS) return;
+  window.MBDS.themes.forEach(function (t) {
+    window.MBDS.modes.forEach(function (mode) {
       var cell = document.createElement("div");
       cell.className = "matrix__cell theme-scope";
-      cell.setAttribute("data-theme", id);
+      cell.setAttribute("data-theme", t.id);
       cell.setAttribute("data-mode", mode);
       cell.appendChild(tpl.content.cloneNode(true));
-      cell.querySelector(".matrix__label").textContent = label + ", " + mode;
+      cell.querySelector(".matrix__label").textContent = t.label + ", " + mode;
       host.appendChild(cell);
     });
   });

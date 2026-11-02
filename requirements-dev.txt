@@ -1,0 +1,2 @@
+# Only needed for scripts/check_pages.py; the site itself has no dependencies.
+playwright==1.58.0

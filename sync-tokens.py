@@ -7,8 +7,8 @@ Usage:
     python3 sync-tokens.py --table    # print a Markdown table of key tokens
 
 Checks:
-  1. Every theme registered in themes/index.css (@import and --theme-list)
-     exists, and every theme file is registered.
+  1. Every theme file is @imported in themes/index.css and listed in the
+     THEMES registry in js/theme-init.js, and every registration has a file.
   2. Each theme's light block defines every contract token; its dark block
      redefines every token in the colour group. No unknown tokens.
   3. Every var(--x) used in css/, js/ and the HTML pages is defined by the
@@ -65,12 +65,14 @@ def theme_blocks(theme_id, css):
 
 
 def registry():
-    """Return (@imported theme ids, {id: label} from --theme-list)."""
+    """Return (@imported theme ids, {id: label} from THEMES in js/theme-init.js)."""
     css = strip_comments((THEMES / "index.css").read_text())
     imports = re.findall(r'@import\s+url\("([^"]+)\.css"\)', css)
-    listed = re.search(r'--theme-list:\s*"([^"]+)"', css)
-    pairs = [p.split(":") for p in listed.group(1).split(",")] if listed else []
-    return imports, {p[0].strip(): p[1].strip() for p in pairs}
+    js = (ROOT / "js" / "theme-init.js").read_text()
+    listed = dict(re.findall(r'\{\s*id:\s*"([a-z0-9-]+)",\s*label:\s*"([^"]+)"\s*\}', js))
+    if not listed:
+        sys.exit("Could not parse THEMES in js/theme-init.js")
+    return imports, listed
 
 
 def check_registry(errors):
@@ -82,10 +84,10 @@ def check_registry(errors):
         if f not in imports:
             errors.append(f"themes/{f}.css is not @imported in themes/index.css")
         if f not in listed:
-            errors.append(f"themes/{f}.css is missing from --theme-list")
+            errors.append(f"themes/{f}.css is missing from THEMES in js/theme-init.js")
     for t in set(imports) | set(listed):
         if t not in files:
-            errors.append(f"themes/index.css registers '{t}' but themes/{t}.css does not exist")
+            errors.append(f"'{t}' is registered but themes/{t}.css does not exist")
     return files, listed
 
 
@@ -109,7 +111,7 @@ def check_themes(errors, files, listed, contract):
 
 def lint_var_references(errors, sources, contract):
     """Every var(--x) resolves to a contract token or a property declared somewhere in the sources."""
-    defined = {t for g in contract for t in g["tokens"]} | {"--theme-list"}
+    defined = {t for g in contract for t in g["tokens"]}
     for src in sources:
         defined |= set(re.findall(r"(--[a-z0-9-]+)\s*:", strip_comments(src.read_text())))
     for src in sources:

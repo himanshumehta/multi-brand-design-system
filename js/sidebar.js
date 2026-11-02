@@ -1,7 +1,8 @@
 /*
  * Injects the catalogue sidebar: wordmark, theme + mode switcher, page links,
- * and the mobile menu button. Themes are discovered from --theme-list
- * (themes/index.css), so adding a theme needs no JavaScript change.
+ * and the mobile menu button. Themes come from the registry in
+ * js/theme-init.js (window.MBDS.themes), which has already validated the
+ * current theme and mode against it.
  */
 (function () {
   var NAV = [
@@ -27,16 +28,6 @@
     ] }
   ];
 
-  function themeList() {
-    var raw = getComputedStyle(document.documentElement).getPropertyValue("--theme-list") || "";
-    raw = raw.trim().replace(/^["']|["']$/g, "");
-    var list = raw.split(",").map(function (pair) {
-      var parts = pair.split(":");
-      return { id: (parts[0] || "").trim(), label: (parts[1] || parts[0] || "").trim() };
-    }).filter(function (t) { return t.id; });
-    return list.length ? list : [{ id: "neutral", label: "Neutral" }];
-  }
-
   function el(tag, attrs, children) {
     var node = document.createElement(tag);
     Object.keys(attrs || {}).forEach(function (k) {
@@ -48,14 +39,8 @@
   }
 
   function build() {
-    var themes = themeList();
+    var themes = window.MBDS.themes;
     var state = window.MBDS.get();
-
-    // Unknown theme id (stale storage or bad URL param): fall back quietly.
-    if (!themes.some(function (t) { return t.id === state.theme; })) {
-      window.MBDS.set({ theme: themes[0].id });
-      state = window.MBDS.get();
-    }
 
     var nav = document.querySelector("nav.sidebar");
     if (!nav) {
@@ -63,7 +48,7 @@
       document.body.insertBefore(nav, document.body.firstChild);
     }
     nav.id = "sidebar";
-    nav.innerHTML = "";
+    nav.replaceChildren();
 
     var mark = el("a", { "class": "wordmark", href: "index.html" }, [
       el("span", { "class": "wordmark__top", text: "Multi-brand" }),
@@ -120,7 +105,8 @@
       var a = e.target.closest && e.target.closest("a.navlist__link, a.wordmark");
       if (!a || window.MBDS.persisted) return;
       var s = window.MBDS.get();
-      a.setAttribute("href", a.getAttribute("href").split("?")[0] + "?theme=" + s.theme + "&mode=" + s.mode);
+      var query = new URLSearchParams({ theme: s.theme, mode: s.mode });
+      a.setAttribute("href", a.getAttribute("href").split("?")[0] + "?" + query.toString());
     });
 
     // Mobile menu
