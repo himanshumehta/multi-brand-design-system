@@ -31,6 +31,8 @@ MODES = ("light", "dark")
 VIEWPORT = {"width": 1440, "height": 900}
 MIN_SIDEBAR_LINKS = 14  # one link per page in the catalogue nav
 CSP_MARKER = "Content Security Policy"
+MAX_PROBLEMS_PER_LOAD = 5
+MAX_PROBLEM_CHARS = 240
 
 # Values an attacker could put in a shared link or a poisoned localStorage.
 HOSTILE_VALUES = [
@@ -67,11 +69,16 @@ PROBE = """
     if (f === 'times' || f === '"times new roman"' || f === 'serif') defaults.push(el.tagName + '.' + el.className);
   }
   const pair = (a, b) => window.MBDS_contrast ? window.MBDS_contrast(a, b) : null;
+  // The theme's web fonts must actually load (a CSP that blocks them falls back silently).
+  const family = v => v.split(',')[0].trim().replace(/^["']|["']$/g, '');
+  const loaded = new Set([...document.fonts].filter(f => f.status === 'loaded').map(f => family(f.family)));
+  const unloaded = ['--font-display', '--font-body'].map(t => family(cs.getPropertyValue(t))).filter(f => !loaded.has(f));
   return {
     theme: document.documentElement.dataset.theme,
     mode: document.documentElement.dataset.mode,
     empty,
     defaults: defaults.slice(0, 5),
+    unloaded,
     missingCells: document.querySelectorAll('.token-value.is-missing').length,
     bodyBg: getComputedStyle(document.body).backgroundColor,
     sidebarLinks: document.querySelectorAll('.navlist__link').length,
@@ -135,7 +142,10 @@ class Session:
         self.page.evaluate("document.fonts.ready")
 
     def drain(self, tag, failures):
-        failures += [f"{tag}: {p}" for p in self.problems]
+        unique = list(dict.fromkeys(self.problems))
+        failures += [f"{tag}: {p[:MAX_PROBLEM_CHARS]}" for p in unique[:MAX_PROBLEMS_PER_LOAD]]
+        if len(unique) > MAX_PROBLEMS_PER_LOAD:
+            failures.append(f"{tag}: ... and {len(unique) - MAX_PROBLEMS_PER_LOAD} more")
         self.problems.clear()
 
 
@@ -161,6 +171,8 @@ def check_matrix(s, base, themes, failures):
                     s.problems.append(f"{r['missingCells']} missing token cells")
                 if r["defaults"]:
                     s.problems.append(f"default font on: {r['defaults']}")
+                if r["unloaded"]:
+                    s.problems.append(f"web font not loaded: {r['unloaded']}")
                 if r["bodyBg"] in ("rgba(0, 0, 0, 0)", "transparent"):
                     s.problems.append("body has no background")
                 if r["sidebarLinks"] < MIN_SIDEBAR_LINKS or r["chips"] != len(themes):
@@ -285,7 +297,7 @@ def run(base, shots):
         for f in failures:
             print("  - " + f)
         return 1
-    print("OK: no console errors, no CSP violations, no empty tokens, no default-font elements")
+    print("OK: no console errors, no CSP violations, no empty tokens, all theme web fonts loaded")
     return 0
 
 

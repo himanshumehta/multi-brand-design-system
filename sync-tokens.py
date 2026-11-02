@@ -14,7 +14,11 @@ Checks:
   3. Every var(--x) used in css/, js/ and the HTML pages is defined by the
      contract, by a derived token, or locally inside a component.
   4. No colour literals (#hex, rgb(), hsl(), oklch()) outside themes/.
-  5. No inline style="" attributes in the HTML pages.
+  5. Every HTML page carries the same strict Content-Security-Policy <meta>
+     (no 'unsafe-inline', 'unsafe-eval' or wildcard sources) and a referrer
+     policy, and has nothing the CSP would block: no style="" attributes,
+     on*= handlers, inline <script>/<style> blocks or javascript: URLs.
+     target="_blank" links need rel="noopener".
 
 Standard library only. Paths are relative to this file.
 """
@@ -27,6 +31,7 @@ ROOT = Path(__file__).resolve().parent
 THEMES = ROOT / "themes"
 TABLE_TOKENS = ["--surface-0", "--text-1", "--color-primary", "--color-accent",
                 "--font-display", "--radius-md", "--duration-base"]
+UNSAFE_CSP_SOURCES = ("'unsafe-inline'", "'unsafe-eval'", "'unsafe-hashes'", "*", "data:", "http:", "https:")
 COLOUR_LITERAL = re.compile(r"#[0-9a-fA-F]{3,8}\b|\b(?:rgba?|hsla?|oklch|oklab|lab|lch)\(")
 
 
@@ -128,11 +133,42 @@ def lint_colour_literals(errors):
                 errors.append(f"{src.relative_to(ROOT)}:{i}: colour literal outside themes/: {line.strip()}")
 
 
-def lint_inline_styles(errors, pages):
-    """No style="" attributes; they would need 'unsafe-inline' in the CSP."""
+def lint_csp_meta(errors, name, html, policies):
+    """The CSP <meta> comes first (before anything it governs) and has no unsafe sources."""
+    csp = re.search(r'<meta charset="utf-8">\s*<meta http-equiv="Content-Security-Policy" content="([^"]+)">', html)
+    if not csp:
+        errors.append(f"{name}: CSP <meta> missing or not directly after <meta charset>")
+        return
+    policies.setdefault(csp.group(1), []).append(name)
+    errors += [f"{name}: CSP allows {weak}" for weak in UNSAFE_CSP_SOURCES if weak in re.split(r"[\s;]+", csp.group(1))]
+    if '<meta name="referrer" content="no-referrer">' not in html:
+        errors.append(f"{name}: referrer policy <meta> missing")
+
+
+def lint_inline_content(errors, name, html):
+    """Nothing the CSP would block: inline styles, handlers, scripts, javascript: URLs."""
+    errors += [f"{name}: inline style attribute (use a class in css/utilities.css): {v}"
+               for v in re.findall(r'\sstyle="([^"]*)"', html)]
+    errors += [f"{name}: inline event handler {v}= (bind it in js/)"
+               for v in re.findall(r"<[^>]*\s(on[a-z]+)=", html)]
+    if re.search(r"<script(?![^>]*\ssrc=)[^>]*>", html) or re.search(r"<style[\s>]", html):
+        errors.append(f"{name}: inline <script> or <style> block")
+    if "javascript:" in html.lower():
+        errors.append(f"{name}: javascript: URL")
+    errors += [f"{name}: target=_blank without rel=noopener: {tag}"
+               for tag in re.findall(r'<a\s[^>]*target="_blank"[^>]*>', html)
+               if not re.search(r'rel="[^"]*\bnoopener\b', tag)]
+
+
+def lint_page_policy(errors, pages):
+    """Every page keeps the same strict CSP enforceable."""
+    policies = {}
     for src in pages:
-        for style in re.findall(r'\sstyle="([^"]*)"', src.read_text()):
-            errors.append(f"{src.name}: inline style attribute (use a class in css/utilities.css): {style}")
+        html = src.read_text()
+        lint_csp_meta(errors, src.name, html, policies)
+        lint_inline_content(errors, src.name, html)
+    if len(policies) > 1:
+        errors.append("pages disagree on the CSP: " + "; ".join(f"{len(v)} page(s) use {k!r}" for k, v in policies.items()))
 
 
 def print_table(data, files):
@@ -156,7 +192,7 @@ def main():
     data = check_themes(errors, files, listed, contract)
     lint_var_references(errors, sources, contract)
     lint_colour_literals(errors)
-    lint_inline_styles(errors, pages)
+    lint_page_policy(errors, pages)
 
     if "--json" in args:
         print(json.dumps({"contract": contract, "themes": data}, indent=2))
