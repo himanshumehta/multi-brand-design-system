@@ -58,7 +58,7 @@ only third-party requests are Google Fonts stylesheets and font files.
   per browser, so it cannot carry a stable hash. The CSP limits fonts to
   `fonts.gstatic.com` and stylesheets to `fonts.googleapis.com`; self-hosting
   the fonts would remove the dependency.
-- **Scanner tooling.** `.github/ci-requirements.txt` pins semgrep, bandit and
+- **Scanner tooling.** `.github/requirements-ci.txt` pins semgrep, bandit and
   pip-audit for CI. They do not ship with the site and are not part of the
   dependency audit; semgrep's own dependency tree had open advisories when last
   checked.
