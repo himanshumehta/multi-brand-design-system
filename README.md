@@ -114,7 +114,7 @@ The sibling project [data-to-video](https://github.com/himanshumehta/data-to-vid
 | JavaScript disabled | Pages render in Neutral light (the default theme also matches `:root:not([data-theme])`); demos are inert. |
 | `localStorage` blocked (private mode, sandboxed iframe) | Every access is in `try/catch`; the choice is carried across pages in the query string instead (`MBDS.persisted` is `false`). |
 | Unknown or hostile `?theme=` / `?mode=` / stored value | Ignored; the next source is tried (storage, then `prefers-color-scheme`, then Neutral light). |
-| Google Fonts unreachable | Each font token ends in a system fallback stack; layout is unchanged. |
+| Google Fonts unreachable | Each font token ends in a system fallback stack, so pages render in those fonts (metrics differ, so line lengths shift). |
 | A theme misses a token | `sync-tokens.py` fails in CI; in the browser the token reference page marks the cell as missing and `check_pages.py` fails. |
 | Reduced motion requested | A `prefers-reduced-motion` rule caps every animation and transition at 1 ms. |
 

@@ -35,7 +35,7 @@ only third-party requests are Google Fonts stylesheets and font files.
 
 - `python3 sync-tokens.py` fails if any page lacks the CSP or referrer
   `<meta>`, if pages disagree on the policy, if the policy allows
-  `'unsafe-inline'`, `'unsafe-eval'` or wildcard sources, or if a page contains
+  `'unsafe-inline'`, `'unsafe-eval'`, `'unsafe-hashes'`, `*` or scheme-wide sources (`data:`, `http:`, `https:`), or if a page contains
   something the policy would block (`style=""`, `on*=` handlers, inline
   `<script>`/`<style>`, `javascript:` URLs) or a `target="_blank"` link without
   `rel="noopener"`. Each rule has a test in `tests/test_sync_tokens.py`.

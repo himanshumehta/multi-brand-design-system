@@ -15,7 +15,7 @@ Checks:
      contract, by a derived token, or locally inside a component.
   4. No colour literals (#hex, rgb(), hsl(), oklch()) outside themes/.
   5. Every HTML page carries the same strict Content-Security-Policy <meta>
-     (no 'unsafe-inline', 'unsafe-eval' or wildcard sources) and a referrer
+     (no 'unsafe-*', '*' or scheme-wide sources) and a referrer
      policy, and has nothing the CSP would block: no style="" attributes,
      on*= handlers, inline <script>/<style> blocks or javascript: URLs.
      target="_blank" links need rel="noopener".
