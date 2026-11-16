@@ -2,4 +2,4 @@
 # with the site, so these are not part of the dependency audit (see SECURITY.md).
 bandit==1.9.4
 pip-audit==2.10.1
-semgrep==1.183.0
+semgrep==1.184.0
